@@ -1,0 +1,151 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="{% static 'saray_menu/data/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'saray_menu/data/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'saray_menu/data/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'saray_menu/data/fonts/icomoon/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <style>
+        body {
+          background-image : url({%static 'saray_menu/resmenu.webp' %});
+          height: 100vh;
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat:no-repeat;
+        background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <header class="site-navbar" role="banner">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">saray restaurant</a></h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a href="index.html"><span>خانه</span></a></li>
+                            <li class="has-children">
+                                <a href=""><span>منو</span></a>
+                                <ul class="dropdown arrow-top">
+                                    <li><a href="{% url 'menu'%}">پیش غذا</a></li>
+                                    <li><a href="#">غذا های ایرانی</a></li>
+                                    <li><a href="#">غذاهای پرسی</a></li>
+                                    <li><a href="#">پاستا</a></li>
+                                    <li><a href="#">پیتزا</a></li>
+                                    <li><a href="#">برگر</a></li>
+                                    <li><a href="#">دسر</a></li>
+                                    <li><a href="#">نوشیدنی</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li><a href="listings.html"><span>Listings</span></a></li> -->
+                            <li><a href="#contact"><span>درباره ما</span></a></li>
+                            <!-- <li><a href="blog.html"><span>وبلاگ</span></a></li> -->
+                            <li><a href="#contact"><span>ارتباط با ما</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a
+                        href="#" class="site-menu-toggle js-menu-toggle text-white"><span
+                            class="icon-menu h3"></span></a></div>
+            </div>
+        </div>
+        </div>
+    </header>
+{% block body %}
+{% endblock %}
+</body>
+<footer class="text-white text-center text-lg-start bg-dark">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!--Grid row-->
+        <div class="row mt-4">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">درباره ما</h5>
+                <p>................</p>
+                <p>.............</p>
+                <div class="mt-4">
+                    <!-- Facebook -->
+                    <a type="button" class="btn btn-floating btn-dark btn-lg"><i class="fab fa-facebook"></i></a>
+                    <!-- Dribbble -->
+                    <a type="button" class="btn btn-floating btn-dark btn-lg"><i class="fab fa-telegram"></i></a>
+                    <!-- Twitter -->
+                    <a type="button" class="btn btn-floating btn-dark btn-lg"><i class="fab fa-twitter"></i></a>
+                    <!-- Google + -->
+                    <a type="button" class="btn btn-floating btn-dark btn-lg"><i class="fab fa-instagram"></i></a>
+                    <!-- Linkedin -->
+                </div>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0" style="margin-top: 60px;" id="contact">
+                <ul class="fa-ul" style="margin-left: 1.65em;">
+                    <li class="mb-3">
+                        <span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">تبریز - باغمشه-روبرو بازار ماهی تبریز</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fa-li"><i class="fas fa-envelope"></i></span><span
+                            class="ms-2">...</span>
+                    </li>
+                    <li class="mb-3">
+                        <span class="fa-li"><i class="fas fa-phone"></i></span><span class="ms-2">04136688554</span>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">ساعات کاری رستوران</h5>
+                <table class="table text-center text-white">
+                    <tbody class="fw-normal">
+                        <tr>
+                            <td> یکشنبه - شنبه </td>
+                            <td>۱۰ - ۲۴</td>
+                        </tr>
+                        <tr>
+                            <td> سه شنبه - دوشنبه </td>
+                            <td>۱۰ - ۲۴</td>
+                        </tr>
+                        <tr>
+                            <td> جمعه - چهارشنبه </td>
+                            <td>۱۰ - ۲۴</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https:\\noronet.co">noronet.co</a>
+        <div style="color: darkgray;">created by 
+        <a style="color: rgb(173, 34, 34);" href="https:\\noronet.co" >noronet.co</a>
+    </div>
+</footer>
+</div>
+<script type="text/javascript" src="{%static 'saray_menu/js/mdb.min.js'%}"></script>
+<!-- Custom scripts -->
+<script type="text/javascript" src="{%static 'saray_menu/js/script.js'%}"></script>
+</html>
