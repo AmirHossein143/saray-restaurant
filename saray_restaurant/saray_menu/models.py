@@ -20,8 +20,5 @@ class Food(models.Model):
         p = ""
         for i in self.image.all():
             p += f"{str(i)}, "
-        # for i in range(1, Image.objects.count() + 2):
-        #     if self.image in Image.objects.all():
-        #         p += f"{str(Image.objects.get(pk = i))}, "
-        
+        p = p[0:-2]
         return f"food_name: {self.food_name},  price: {self.price},  image: {p}, {self.category},  description: {self.description} "

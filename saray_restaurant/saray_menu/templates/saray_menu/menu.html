@@ -5,30 +5,41 @@
     <!-- <div class="hero" style="background-image: url('res.webp');"> -->
       <div class="container">
         <div class="row">
-<div class="card">
 <!-- <img src="slidebar1.jpg" alt="Denim Jeans" style="width:100%" class="cardimg"> -->
-<div id="carouselExampleIndicators0" class="carousel slide" data-ride="carousel"  >
+{% comment %}  {% endcomment %}
+{%for i in length%}
+<div class="card">
+<div id="{{class_name}}{{i}}" class="carousel slide" data-ride="carousel"  >
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators0" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators0" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators0" data-slide-to="2"></li>
+    {%if i == 0%}
+    <li data-target="#{{class_name}}{{i}}" data-slide-to="0" class="active"></li>
+    {%else%}
+    <li data-target="#{{class_name}}{{i}}" data-slide-to="{{i}}"></li>
+    {%endif%}
+    {% comment %} <li data-target="#{{class_name}}{{i}}" data-slide-to="2"></li> {% endcomment %}
   </ol>
   <div class="carousel-inner">
+    
+    {%for j in image %}
+    {% if counter == 0 %}
     <div class="carousel-item active">
-      <img class="d-block w-100" src="{%static 'saray_menu/slidebar1.jpg'%}" alt="First slide" style="height: 100%;">
+      <img class="d-block w-100" src="{%static %}" alt="slide {{j}}" style="height: 100%;">
     </div>
+    {%else%}
     <div class="carousel-item">
-      <img class="d-block w-100" src="{%static 'saray_menu/slidebar2.jpg'%}" alt="Second slide">
+      <img class="d-block w-100" src="{%static 'saray_menu/slidebar2.jpg'%}" alt="slide {{j}}">
     </div>
-    <div class="carousel-item">
+    {{ counter += 1}}
+    {%endif%}
+    {% comment %} <div class="carousel-item">
       <img class="d-block w-100" src="{%static 'saray_menu/slidebar3.jpg'%}" alt="Third slide">
-    </div>
+    </div> {% endcomment %}
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators0" role="button" data-slide="prev">
+  <a class="carousel-control-prev" href="#{{class_name}}{{i}}" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators0" role="button" data-slide="next">
+    <a class="carousel-control-next" href="#{{class_name}}{{i}}" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -37,7 +48,9 @@
 <p class="dis">توضیحات</p>
 <p class="price">۱۰۰۰۰۰</p>
 </div>
-<div class="card">
+{% endfor %}
+{% comment %}  {% endcomment %}
+{% comment %} <div class="card">
 <!-- <img src="slidebar1.jpg" alt="Denim Jeans" style="width:100%" class="cardimg"> -->
 <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel"  >
   <ol class="carousel-indicators">
@@ -100,7 +113,7 @@
 <h1>سالاد پاستا</h1>
 <p class="dis">توضیحات:</p>
 <p class="price">۵۰۰۰۰۰</p>
-</div>
+</div> {% endcomment %}
 </div>
 </div>
 <!-- </div> -->
