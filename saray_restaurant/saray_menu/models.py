@@ -6,7 +6,7 @@ class Categories(models.Model):
     def __str__(self):
         return f"category: {self.category_name}"
 class Image(models.Model):
-    image1 = models.ImageField(upload_to = "images", blank = True)
+    image1 = models.ImageField(upload_to = "saray_menu\static\images", blank = True)
     def __str__(self):
         return f"{self.image1.name}"
 class Food(models.Model):
