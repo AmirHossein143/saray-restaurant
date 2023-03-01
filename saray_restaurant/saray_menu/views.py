@@ -36,10 +36,12 @@ def menu(request, category_name1):
         b.append(str(Image.objects.get(pk = b[1]).image1))
         ls.append(b) 
     image_length_d = dict()
-    for j in our_food:
-        image_length_d[int(j.id)] = [i for i in range(0, Food.objects.get(pk=3).image.count())]
-    # first_food = our_food.first().id
+    # for j in our_food:
+    #     image_length_d[int(j.id)] = [i for i in range(0, Food.objects.get(pk=j.id).image.count())]
+    # # first_food = our_food.first().id
+    count1 = 0
+    count2 = 0
     return render(request, 'saray_menu/menu.html',
                   {"categories": Categories1, "Food": our_food, "Image": Image1, 
                    "class_name": "carouselExampleIndicators", 
-                   "images":ls, "image_length":image_length_d})
+                   "images":ls, "image_length":image_length_d, "count1":count1, "count2":count2})

@@ -1,5 +1,7 @@
 {% extends 'saray_menu/menu_layout.html' %}
-{% load static%}
+{% load static %}
+{% load my_filters %}
+{% load mysimple_tag %}
 {% block body%}
     <!-- <img src="res.webp" class="img-fluid" id="hero"> -->
     <!-- <div class="hero" style="background-image: url('res.webp');"> -->
@@ -10,27 +12,34 @@
 <div class="card">
 <div id="{{class_name}}{{i.id}}" class="carousel slide" data-ride="carousel"  >
   <ol class="carousel-indicators">
-    {%for k in image_length[i.id]%}
-    {%if  k == 0%}
-    <li data-target="#{{class_name}}{{i.id}}" data-slide-to="0" class="active"></li>
-    {%else%}
+    {% comment %} {%for k in image_length[i.id]%} {% endcomment %}
+
+    {% comment %} {{image_count|i}} {% endcomment %}
+    {% comment %} <p>
+    {% image_count i Food %}
+    </p> {% endcomment %}
+    {%for k in i|image_count%}
+    {%if k == 0%}
+    <li data-target="#{{class_name}}{{i.id}}" data-slide-to="{{k}}" class="active"></li>
+    {% else %}
     <li data-target="#{{class_name}}{{i.id}}" data-slide-to="{{k}}"></li>
     {%endif%}
     {%endfor%}
     {% comment %} <li data-target="#{{class_name}}{{i}}" data-slide-to="2"></li> {% endcomment %}
   </ol>
+
   <div class="carousel-inner">
     {% comment %} {{counter}} {% endcomment %}
-    {%for j in images %}
-    {% if j[0] == True %}
+
+    {%for j in i|image_count %}
+    {% if j == 0%}
     <div class="carousel-item active">
-      {% if j[%}
-      <img class="d-block w-100" src="{%static 'images/'%}" alt="slide {{j}}" style="height: 100%;">
+      {%image_url i j%}
+      <img class="d-block w-100" src="/{%image_url i j%}" alt="slide {{j}}" style="height: 100%;">
     </div>
-    {% comment %} {% url 'first1' False%} {% endcomment %}
     {%else%}
     <div class="carousel-item">
-      <img class="d-block w-100" src="{%static 'images/'%}" alt="slide {{j}}">
+      <img class="d-block w-100" src="/{%image_url i j%}" alt="slide {{j}}">
     </div>
     {%endif%}
     {%endfor%}
