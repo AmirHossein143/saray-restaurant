@@ -1,0 +1,29 @@
+{% load static %}<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#15110E">
+  <title>خطای موقت | رستوران سارای</title>
+  <link rel="icon" href="{% static 'saray_menu/img/brand/favicon.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'saray_menu/fonts/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'saray_menu/css/site.css' %}">
+</head>
+<body class="page page--error page--500">
+  <main id="main" class="error-page" aria-labelledby="err-title">
+    <div class="girih girih--dark" aria-hidden="true"></div>
+    <div class="done__glow" aria-hidden="true"></div>
+    <div class="container container--narrow error-page__inner">
+      <a class="error-page__logo" href="/"><img src="{% static 'saray_menu/img/brand/logo.svg' %}" alt="رستوران سارای" width="183" height="72"></a>
+      <p class="error-page__code" aria-hidden="true">۵۰۰</p>
+      <h1 class="page-title" id="err-title">آشپزخانه <em>کمی شلوغ است</em></h1>
+      <p class="page-hero__lead">خطایی موقت پیش آمده است. لطفاً چند لحظه‌ی دیگر دوباره تلاش کنید. برای رزرو می‌توانید با شماره‌ی <a href="tel:+984136688554" dir="ltr">۰۴۱-۳۶۶۸۸۵۵۴</a> تماس بگیرید.</p>
+      <div class="btn-row btn-row--center">
+        <a class="btn btn--primary" href="/">بازگشت به صفحه‌ی اصلی</a>
+        <a class="btn btn--ghost-light" href="tel:+984136688554">تماس با رستوران</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

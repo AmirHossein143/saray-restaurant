@@ -4,3 +4,4 @@ from django.apps import AppConfig
 class SarayMenuConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'saray_menu'
+    verbose_name = 'منوی رستوران'

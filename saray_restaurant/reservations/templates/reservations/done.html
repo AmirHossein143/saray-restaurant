@@ -1,0 +1,61 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block title %}رزرو شما ثبت شد | {{ site.name }}{% endblock %}
+{% block meta_description %}درخواست رزرو شما در {{ site.name }} ثبت شد.{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex, nofollow">{% endblock %}
+{% block canonical_tags %}{% endblock %}
+{% block og_url %}{% endblock %}
+{% block body_class %}page page--done has-cta{% endblock %}
+
+{% block content %}
+<section class="done" aria-labelledby="done-title">
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="done__glow" aria-hidden="true"></div>
+  <canvas class="done__sparks" data-embers data-embers-mode="burst" aria-hidden="true"></canvas>
+  <div class="container container--narrow">
+    <div class="ticket" data-hero-in>
+      <div class="ticket__top">
+        <div class="done__seal" aria-hidden="true">
+          <svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg>
+          <svg class="done__check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </div>
+        <p class="eyebrow eyebrow--dark">درخواست رزرو ثبت شد</p>
+        <h1 class="done__title" id="done-title">{{ reservation.name }}، <em>منتظرتان هستیم!</em></h1>
+        <p class="done__lead">همکاران ما به‌زودی با شماره‌ی <span dir="ltr">{{ reservation.phone|fa_digits }}</span> تماس می‌گیرند تا رزرو را تأیید کنند.</p>
+      </div>
+
+      <div class="ticket__tear" aria-hidden="true"></div>
+
+      <div class="ticket__body">
+        <div class="code-box">
+          <p class="code-box__label">کد رزرو</p>
+          <div class="code-box__row">
+            <p class="code-box__code" dir="ltr" lang="en" data-copy-source>{{ reservation.code }}</p>
+            <button class="code-box__copy" type="button" data-copy-code hidden>
+              <svg class="icon icon--sm" aria-hidden="true"><use href="#i-copy"/></svg><span data-copy-label>کپی کد</span>
+            </button>
+          </div>
+          <p class="sr-only" role="status" data-copy-status></p>
+          <p class="code-box__hint">این کد را هنگام تماس یا مراجعه اعلام کنید.</p>
+        </div>
+        <dl class="ticket__details">
+          <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg>تاریخ</dt><dd>{{ reservation.date|jalali_long }}</dd></div>
+          <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg>ساعت</dt><dd>{{ reservation.time|time:'H:i'|fa_digits }}</dd></div>
+          <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-users"/></svg>مهمان‌ها</dt><dd>{{ reservation.guests|fa_digits }} نفر</dd></div>
+          {% if reservation.occasion %}<div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"/></svg>مناسبت</dt><dd>{{ reservation.get_occasion_display }}</dd></div>{% endif %}
+          <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>وضعیت</dt><dd><span class="status status--{{ reservation.status }}">{{ reservation.get_status_display }}</span></dd></div>
+        </dl>
+        {% if reservation.notes %}<p class="ticket__notes"><strong>توضیحات شما:</strong> {{ reservation.notes }}</p>{% endif %}
+      </div>
+
+      <div class="ticket__foot">
+        <a class="btn btn--primary" href="{% url 'menu' %}"><span>نگاهی به منو</span><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="{% url 'home' %}">بازگشت به صفحه‌ی اصلی</a>
+        {% if site.phone %}<a class="btn btn--ghost" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span dir="ltr">{{ site.phone_display|fa_digits }}</span></a>{% endif %}
+      </div>
+    </div>
+    <p class="done__address"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>{{ site.address }}</p>
+  </div>
+</section>
+{% endblock %}

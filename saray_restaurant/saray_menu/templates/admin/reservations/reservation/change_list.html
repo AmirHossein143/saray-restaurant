@@ -1,0 +1,12 @@
+{% extends "admin/change_list.html" %}
+
+{% block search %}
+{% if sr_when_tabs %}
+<nav class="sr-tabs" aria-label="بازهٔ زمانی رزروها">
+  {% for tab in sr_when_tabs %}
+    <a href="{{ tab.url }}" class="sr-tab{% if tab.selected %} is-selected{% endif %}"{% if tab.selected %} aria-current="page"{% endif %}>{{ tab.label }}</a>
+  {% endfor %}
+</nav>
+{% endif %}
+{{ block.super }}
+{% endblock %}

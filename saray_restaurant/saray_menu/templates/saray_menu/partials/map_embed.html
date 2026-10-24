@@ -1,0 +1,20 @@
+{% load static %}
+{% if site.has_location %}
+{# Click-to-load: nothing is requested from openstreetmap.org until the visitor asks for the map. #}
+<div class="map-embed" data-map data-lat="{{ site.latitude|stringformat:'s' }}" data-lng="{{ site.longitude|stringformat:'s' }}">
+  <div class="map-art map-embed__placeholder" data-map-placeholder>
+    <img src="{% static 'saray_menu/img/site/tabriz.webp' %}" srcset="{% static 'saray_menu/img/site/tabriz-md.webp' %} 1000w, {% static 'saray_menu/img/site/tabriz.webp' %} 1600w" sizes="(min-width: 56em) 50vw, 100vw" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+    <div class="map-art__pin" aria-hidden="true"><svg class="icon"><use href="#i-pin"/></svg></div>
+    <div class="map-embed__cta">
+      <button class="btn btn--light btn--sm" type="button" data-map-load hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map"/></svg><span>نمایش نقشه</span></button>
+      <a class="btn btn--light btn--sm" href="https://www.openstreetmap.org/?mlat={{ site.latitude|stringformat:'s' }}&amp;mlon={{ site.longitude|stringformat:'s' }}#map=17/{{ site.latitude|stringformat:'s' }}/{{ site.longitude|stringformat:'s' }}" rel="noopener" target="_blank" data-map-fallback><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map"/></svg><span>نمایش روی نقشه</span></a>
+      <p class="map-embed__note" data-map-note hidden>نقشه از OpenStreetMap بارگذاری می‌شود.</p>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="map-art" aria-hidden="true">
+  <img src="{% static 'saray_menu/img/site/tabriz.webp' %}" srcset="{% static 'saray_menu/img/site/tabriz-md.webp' %} 1000w, {% static 'saray_menu/img/site/tabriz.webp' %} 1600w" sizes="(min-width: 56em) 50vw, 100vw" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+  <div class="map-art__pin"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></div>
+</div>
+{% endif %}

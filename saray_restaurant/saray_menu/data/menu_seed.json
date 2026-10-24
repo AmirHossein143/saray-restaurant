@@ -1,0 +1,1085 @@
+{
+ "source": "menu.xlsx (owner-provided). Prices are integer Toman; null price = ask staff.",
+ "categories": [
+  {
+   "slug": "starters",
+   "name": "پیش‌غذا و سالاد",
+   "name_en": "Starters & Salads",
+   "icon": "salad",
+   "photo": "shirazi-salad",
+   "description": "شروعی سبک و خوش‌طعم؛ از سوپ جوی خامه‌ای تا سالاد شیرازی تازه.",
+   "items": [
+    {
+     "slug": "cream-barley-soup",
+     "name": "سوپ خامه",
+     "name_en": "Cream Barley Soup",
+     "description": "سوپ جو، خامه، شیر، ادویه",
+     "price": 15000,
+     "photo": "barley-soup",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "tornado-potato",
+     "name": "سیب‌زمینی تورنادو",
+     "name_en": "Tornado Potato",
+     "description": "سیب‌زمینی اسلایس‌شده، سس تورنادو، ادویه",
+     "price": 70000,
+     "photo": "tornado-potato",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "french-fries",
+     "name": "سیب‌زمینی سرخ‌کرده",
+     "name_en": "French Fries",
+     "description": "سیب‌زمینی اسلایس‌شده کارخانه ۱۵۰ گرم",
+     "price": 50000,
+     "photo": "french-fries",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "caesar-salad",
+     "name": "سالاد سزار",
+     "name_en": "Caesar Salad",
+     "description": "فیله مرغ ۸۰ گرم، نان تست، کاهو پیچ، گوجه، زیتون، پنیر پارمزان",
+     "price": 80000,
+     "photo": "caesar-salad",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "garden-salad",
+     "name": "سالاد فصل",
+     "name_en": "Garden Salad",
+     "description": "کاهو، کلم قرمز، هویج، گوجه، خیار، سس",
+     "price": 30000,
+     "photo": "garden-salad",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "shirazi-salad",
+     "name": "سالاد شیرازی",
+     "name_en": "Shirazi Salad",
+     "description": "گوجه، خیار، پیاز، جعفری، آبلیمو",
+     "price": 30000,
+     "photo": "shirazi-salad",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "olives",
+     "name": "زیتون",
+     "name_en": "Olives",
+     "description": "زیتون بدون هسته ۱۰۰ گرم",
+     "price": 25000,
+     "photo": "olives",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "zeytoon-parvardeh",
+     "name": "زیتون پرورده",
+     "name_en": "Zeytoon Parvardeh",
+     "description": "زیتون فرآوری‌شده با گردو و رب انار ۱۰۰ گرم",
+     "price": 25000,
+     "photo": "zeytoon-parvardeh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "pickled-garlic",
+     "name": "سیر ترشی",
+     "name_en": "Pickled Garlic",
+     "description": "سیر ترشی خانگی",
+     "price": 25000,
+     "photo": "pickled-garlic",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "local-yogurt",
+     "name": "ماست محلی",
+     "name_en": "Local Yogurt",
+     "description": "ماست محلی گاومیش",
+     "price": 25000,
+     "photo": "local-yogurt",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "chelow-kabab",
+   "name": "چلوکباب",
+   "name_en": "Chelow Kabab",
+   "icon": "skewer",
+   "photo": "kabab-saray-special",
+   "description": "کباب‌های زغالی با گوشت تازه، کنار برنج ایرانی معطر و زعفرانی.",
+   "items": [
+    {
+     "slug": "saray-special-chelow-kabab",
+     "name": "چلوکباب مخصوص سارای",
+     "name_en": "Saray Special Chelow Kabab",
+     "description": "فیله گوساله ۸۰ گرم، فیله مرغ ۸۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۲۴۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 250000,
+     "photo": "kabab-saray-special",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "saray-special-chelow-barg",
+     "name": "چلو برگ مخصوص سارای",
+     "name_en": "Saray Special Chelow Barg",
+     "description": "فیله گوساله ۳۲۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 340000,
+     "photo": "kabab-barg",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "special-chelow-barg",
+     "name": "چلو برگ مخصوص",
+     "name_en": "Special Chelow Barg",
+     "description": "فیله گوساله ۲۲۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 240000,
+     "photo": "kabab-barg",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "half-special-chelow-barg",
+     "name": "چلو برگ نیمه‌مخصوص",
+     "name_en": "Chelow Barg (Regular)",
+     "description": "فیله گوساله ۱۶۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 180000,
+     "photo": "kabab-barg",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-kabab-soltani",
+     "name": "چلوکباب سلطانی",
+     "name_en": "Chelow Kabab Soltani",
+     "description": "فیله گوساله ۱۶۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۱۶۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 250000,
+     "photo": "kabab-soltani",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-kabab-vaziri",
+     "name": "چلوکباب وزیری",
+     "name_en": "Chelow Kabab Vaziri",
+     "description": "فیله مرغ ۱۸۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۱۶۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 180000,
+     "photo": "kabab-vaziri",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-kabab-bakhtiari",
+     "name": "چلوکباب بختیاری",
+     "name_en": "Chelow Kabab Bakhtiari",
+     "description": "فیله گوساله ۱۰۰ گرم، فیله مرغ ۱۴۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 170000,
+     "photo": "kabab-bakhtiari",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-kabab-ghafghazi",
+     "name": "چلوکباب قفقازی",
+     "name_en": "Chelow Kabab Ghafghazi",
+     "description": "فیله گوساله ۱۲۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۱۲۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 150000,
+     "photo": "kabab-soltani",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-kabab-sadafi",
+     "name": "چلوکباب صدفی",
+     "name_en": "Chelow Kabab Sadafi",
+     "description": "فیله گوساله ۲۰۰ گرم، فیله مرغ ۸۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 250000,
+     "photo": "kabab-bakhtiari",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "beef-eskhareh-kabab",
+     "name": "چلو اسقره کباب گوشت",
+     "name_en": "Beef Eskhareh Kabab",
+     "description": "فیله گوساله ۲۰۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۱۰۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 260000,
+     "photo": "kabab-eskhareh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-eskhareh-kabab",
+     "name": "چلو اسقره کباب مرغ",
+     "name_en": "Chicken Eskhareh Kabab",
+     "description": "فیله مرغ ۲۰۰ گرم، گوشت چرخ‌کرده گوسفندی و گوساله ۱۰۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 180000,
+     "photo": "kabab-eskhareh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "special-chelow-koobideh",
+     "name": "چلو کوبیده مخصوص",
+     "name_en": "Special Chelow Koobideh",
+     "description": "گوشت چرخ‌کرده گوسفندی و گوساله ۲۰۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 120000,
+     "photo": "kabab-koobideh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "half-special-chelow-koobideh",
+     "name": "چلو کوبیده نیمه‌مخصوص",
+     "name_en": "Chelow Koobideh (Regular)",
+     "description": "گوشت چرخ‌کرده گوسفندی و گوساله ۱۶۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 100000,
+     "photo": "kabab-koobideh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-joojeh-bone-in",
+     "name": "چلو جوجه‌کباب با استخوان",
+     "name_en": "Bone-in Chelow Joojeh",
+     "description": "ران مرغ ۴۰۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 120000,
+     "photo": "joojeh-bone-in",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "special-chelow-joojeh",
+     "name": "چلو جوجه‌کباب مخصوص",
+     "name_en": "Special Chelow Joojeh",
+     "description": "فیله مرغ ۲۸۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 120000,
+     "photo": "joojeh-kabab",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "half-special-chelow-joojeh",
+     "name": "چلو جوجه‌کباب نیمه‌مخصوص",
+     "name_en": "Chelow Joojeh (Regular)",
+     "description": "فیله مرغ ۱۸۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 95000,
+     "photo": "joojeh-kabab",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-trout",
+     "name": "چلو ماهی قزل‌آلا",
+     "name_en": "Chelow Trout",
+     "description": "ماهی قزل‌آلا ۴۵۰ گرم، برنج ایرانی ۳۵۰ گرم",
+     "price": 220000,
+     "photo": "grilled-trout",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "plain-chelow",
+     "name": "چلو خالی",
+     "name_en": "Plain Saffron Rice",
+     "description": "برنج ایرانی ۳۵۰ گرم",
+     "price": 35000,
+     "photo": "saffron-rice",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "persian-stews",
+   "name": "غذای ایرانی و چلوخورش",
+   "name_en": "Persian Classics & Stews",
+   "icon": "pot",
+   "photo": "ghormeh-sabzi",
+   "description": "دستپخت اصیل ایرانی؛ خورش‌های جاافتاده و پلوهای خوش‌عطر.",
+   "items": [
+    {
+     "slug": "chelow-mahicheh",
+     "name": "چلو ماهیچه",
+     "name_en": "Chelow Mahicheh",
+     "description": "ماهیچه گوسفندی با استخوان ۲۷۰ گرم با سس گوشت، برنج ایرانی ۳۵۰ گرم",
+     "price": 250000,
+     "photo": "mahicheh",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chelow-morgh-fries",
+     "name": "چلو مرغ با سیب‌زمینی سرخ‌کرده",
+     "name_en": "Chicken with Rice & Fries",
+     "description": "ران مرغ، سیب‌زمینی سرخ‌کرده، برنج ایرانی ۳۵۰ گرم",
+     "price": 100000,
+     "photo": "chelow-morgh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "zereshk-polo-morgh",
+     "name": "زرشک‌پلو با مرغ",
+     "name_en": "Zereshk Polo with Chicken",
+     "description": "ران مرغ با سس مرغ، زرشک‌پلو ۳۵۰ گرم",
+     "price": 85000,
+     "photo": "zereshk-polo",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "ghormeh-sabzi",
+     "name": "چلو خورش قورمه‌سبزی",
+     "name_en": "Ghormeh Sabzi",
+     "description": "خورش قورمه‌سبزی، برنج ایرانی ۳۵۰ گرم",
+     "price": 85000,
+     "photo": "ghormeh-sabzi",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "gheimeh-potato",
+     "name": "چلو خورش قیمه سیب‌زمینی",
+     "name_en": "Gheimeh with Fries",
+     "description": "خورش قیمه، سیب‌زمینی سرخ‌کرده، برنج ایرانی ۳۵۰ گرم",
+     "price": 90000,
+     "photo": "gheimeh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "gheimeh-bademjan",
+     "name": "چلو خورش قیمه بادمجان",
+     "name_en": "Gheimeh Bademjan",
+     "description": "خورش قیمه بادمجان، برنج ایرانی ۳۵۰ گرم",
+     "price": 85000,
+     "photo": "gheimeh-bademjan",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "khoresh-havij",
+     "name": "چلو خورش هویج",
+     "name_en": "Khoresh Havij",
+     "description": "خورش هویج، برنج ایرانی ۳۵۰ گرم",
+     "price": 85000,
+     "photo": "khoresh-havij",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "grills",
+   "name": "غذاهای پرسی",
+   "name_en": "Grills & Plates",
+   "icon": "flame",
+   "photo": "beef-steak",
+   "description": "استیک، کباب و ساچ؛ بدون برنج، برای وقتی که فقط کباب می‌خواهید.",
+   "items": [
+    {
+     "slug": "beef-steak",
+     "name": "استیک گوشت",
+     "name_en": "Beef Steak",
+     "description": "فیله گوساله ۵ تکه، پوره سیب‌زمینی، سس قارچ",
+     "price": 250000,
+     "photo": "beef-steak",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-steak",
+     "name": "استیک مرغ",
+     "name_en": "Chicken Steak",
+     "description": "ران مرغ گریل‌شده با سس مخصوص ۲ تکه",
+     "price": 90000,
+     "photo": "chicken-steak",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "mixed-steak",
+     "name": "استیک میکس",
+     "name_en": "Mixed Steak",
+     "description": "فیله گوساله ۳ تکه، ران مرغ گریل‌شده با سس مخصوص ۲ تکه، پوره سیب‌زمینی",
+     "price": 200000,
+     "photo": "mixed-grill",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "kabab-barg",
+     "name": "کباب برگ مخصوص",
+     "name_en": "Special Barg Kabab",
+     "description": "فیله گوساله ۲۲۰ گرم",
+     "price": 210000,
+     "photo": "kabab-barg-plate",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "adana-kabab",
+     "name": "آدانا کباب",
+     "name_en": "Adana Kebab",
+     "description": "گوشت چرخ‌کرده گوسفندی و گوساله ۲۲۰ گرم با ادویه فلفل",
+     "price": 100000,
+     "photo": "adana-kebab",
+     "is_featured": false,
+     "is_spicy": true,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "kabab-koobideh",
+     "name": "کباب کوبیده مخصوص",
+     "name_en": "Special Koobideh Kabab",
+     "description": "گوشت چرخ‌کرده گوسفندی و گوساله ۲۲۰ گرم",
+     "price": 90000,
+     "photo": "kabab-koobideh-plate",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "joojeh-boneless",
+     "name": "جوجه‌کباب بدون استخوان",
+     "name_en": "Boneless Joojeh Kabab",
+     "description": "فیله مرغ زعفرانی ۲۲۰ گرم",
+     "price": 70000,
+     "photo": "joojeh-kabab-plate",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "joojeh-bone-in",
+     "name": "جوجه‌کباب با استخوان",
+     "name_en": "Bone-in Joojeh Kabab",
+     "description": "ران مرغ ۴۰۰ گرم، ۷ تکه",
+     "price": 90000,
+     "photo": "joojeh-bone-in",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-wings",
+     "name": "بال و کتف مرغ",
+     "name_en": "Grilled Chicken Wings",
+     "description": "بال و کتف کباب‌شده با سس مخصوص، ۷ تکه",
+     "price": 75000,
+     "photo": "chicken-wings",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "beef-sac-kavurma",
+     "name": "ساچ کاورما گوشت",
+     "name_en": "Beef Sac Kavurma",
+     "description": "فیله گوساله ۱۵۰ گرم، سیر، فلفل دلمه، ادویه مخصوص",
+     "price": 150000,
+     "photo": "sac-kavurma",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-sac-kavurma",
+     "name": "ساچ کاورما مرغ",
+     "name_en": "Chicken Sac Kavurma",
+     "description": "فیله مرغ ۱۵۰ گرم، سیر، فلفل دلمه، ادویه مخصوص",
+     "price": 120000,
+     "photo": "sac-kavurma-chicken",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "izgara-kofte",
+     "name": "ایزگارا کوفته",
+     "name_en": "Izgara Köfte",
+     "description": "گوشت چرخ‌کرده گوسفندی و گوساله، ۵ تکه ۴۰ گرمی با ادویه فلفل",
+     "price": 80000,
+     "photo": "izgara-kofte",
+     "is_featured": false,
+     "is_spicy": true,
+     "is_vegetarian": false,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "pasta",
+   "name": "پاستا",
+   "name_en": "Pasta",
+   "icon": "pasta",
+   "photo": "penne-baked",
+   "description": "پنه با سس آلفردوی خامه‌ای؛ ساده یا تنوری با پنیر طلایی.",
+   "items": [
+    {
+     "slug": "beef-penne-alfredo",
+     "name": "پنه آلفردو گوشت",
+     "name_en": "Beef Penne Alfredo",
+     "description": "فیله گوشت ۸۰ گرم، پاستا پنه، سس آلفردو، ادویه",
+     "price": 120000,
+     "photo": "penne-alfredo",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-penne-alfredo",
+     "name": "پنه آلفردو مرغ",
+     "name_en": "Chicken Penne Alfredo",
+     "description": "فیله مرغ ۸۰ گرم، پاستا پنه، سس آلفردو، ادویه",
+     "price": 100000,
+     "photo": "penne-alfredo-chicken",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "mixed-penne-alfredo",
+     "name": "پنه آلفردو میکس",
+     "name_en": "Mixed Penne Alfredo",
+     "description": "فیله گوشت ۵۰ گرم، فیله مرغ ۵۰ گرم، پاستا پنه، سس آلفردو، ادویه",
+     "price": 110000,
+     "photo": "penne-alfredo",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "ham-penne-alfredo",
+     "name": "پنه آلفردو ژامبون",
+     "name_en": "Ham Penne Alfredo",
+     "description": "ژامبون گوشت ۱۰۰ گرم، پاستا پنه، سس آلفردو، ادویه",
+     "price": 100000,
+     "photo": "penne-alfredo-chicken",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "baked-beef-penne-alfredo",
+     "name": "پنه آلفردو گوشت تنوری",
+     "name_en": "Baked Beef Penne Alfredo",
+     "description": "فیله گوشت ۸۰ گرم، پاستا پنه، سس آلفردو، پنیر پیتزا، ادویه",
+     "price": 150000,
+     "photo": "penne-baked",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "baked-chicken-penne-alfredo",
+     "name": "پنه آلفردو مرغ تنوری",
+     "name_en": "Baked Chicken Penne Alfredo",
+     "description": "فیله مرغ ۸۰ گرم، پاستا پنه، سس آلفردو، پنیر پیتزا، ادویه",
+     "price": 130000,
+     "photo": "penne-baked",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "baked-mixed-penne-alfredo",
+     "name": "پنه آلفردو میکس تنوری",
+     "name_en": "Baked Mixed Penne Alfredo",
+     "description": "فیله گوشت ۵۰ گرم، فیله مرغ ۵۰ گرم، پاستا پنه، سس آلفردو، پنیر پیتزا، ادویه",
+     "price": 140000,
+     "photo": "penne-baked",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "pizza",
+   "name": "پیتزا",
+   "name_en": "Pizza",
+   "icon": "pizza",
+   "photo": "pizza-supreme",
+   "description": "خمیر تازه و پنیر کش‌دار، در دو اندازه‌ی متوسط (۲۸) و بزرگ (۳۲).",
+   "items": [
+    {
+     "slug": "chef-pizza",
+     "name": "پیتزا شف",
+     "name_en": "Chef Pizza",
+     "description": "گوشت چرخ‌کرده، فیله مرغ، سوسیس بلغاری، کالباس ژامبون، زیتون، قارچ، فلفل دلمه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-supreme",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 120000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 160000
+      }
+     ]
+    },
+    {
+     "slug": "meat-pizza",
+     "name": "پیتزا گوشت",
+     "name_en": "Meat Pizza",
+     "description": "گوشت چرخ‌کرده، زیتون، قارچ، فلفل دلمه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-meat",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 140000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 180000
+      }
+     ]
+    },
+    {
+     "slug": "chicken-pizza",
+     "name": "پیتزا مرغ",
+     "name_en": "Chicken Pizza",
+     "description": "فیله مرغ، زیتون، قارچ، فلفل دلمه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-chicken",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 100000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 130000
+      }
+     ]
+    },
+    {
+     "slug": "pepperoni-pizza",
+     "name": "پیتزا پپرونی",
+     "name_en": "Pepperoni Pizza",
+     "description": "سوسیس پپرونی، قارچ، فلفل دلمه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-pepperoni",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 100000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 130000
+      }
+     ]
+    },
+    {
+     "slug": "mushroom-pizza",
+     "name": "پیتزا قارچ",
+     "name_en": "Mushroom Pizza",
+     "description": "زیتون، قارچ، فلفل دلمه، گوجه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-mushroom",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 80000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 100000
+      }
+     ]
+    },
+    {
+     "slug": "vegetable-pizza",
+     "name": "پیتزا سبزیجات",
+     "name_en": "Vegetable Pizza",
+     "description": "ذرت، زیتون، قارچ، فلفل دلمه، گوجه، پنیر پیتزا",
+     "price": null,
+     "photo": "pizza-vegetable",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": [
+      {
+       "label": "متوسط ۲۸",
+       "price": 80000
+      },
+      {
+       "label": "بزرگ ۳۲",
+       "price": 100000
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "burgers",
+   "name": "همبرگر",
+   "name_en": "Burgers",
+   "icon": "burger",
+   "photo": "burger-saray",
+   "description": "برگرهای دست‌ساز با گوشت تازه‌ی چرخ‌شده و سس مخصوص سارای.",
+   "items": [
+    {
+     "slug": "saray-chef-burger",
+     "name": "شف برگر سارای",
+     "name_en": "Saray Chef Burger",
+     "description": "گوشت چرخ‌کرده ۲۰۰ گرم، فیله مرغ، سوسیس بلغاری، کالباس ژامبون، سس مخصوص، نان مخصوص",
+     "price": 160000,
+     "photo": "burger-saray",
+     "is_featured": true,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chef-burger",
+     "name": "شف برگر",
+     "name_en": "Chef Burger",
+     "description": "گوشت چرخ‌کرده ۲۰۰ گرم، فیله مرغ، سوسیس بلغاری، کالباس ژامبون، سس مخصوص",
+     "price": 130000,
+     "photo": "burger-chef",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "royal-burger",
+     "name": "رویال برگر",
+     "name_en": "Royal Burger",
+     "description": "گوشت چرخ‌کرده ۲۰۰ گرم، سوسیس بلغاری، کالباس ژامبون، سس مخصوص",
+     "price": 120000,
+     "photo": "burger-chef",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "cheeseburger",
+     "name": "چیزبرگر",
+     "name_en": "Cheeseburger",
+     "description": "گوشت چرخ‌کرده ۲۰۰ گرم، سس مخصوص",
+     "price": 100000,
+     "photo": "cheeseburger",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "chicken-burger",
+     "name": "چیکن برگر",
+     "name_en": "Chicken Burger",
+     "description": "فیله مرغ، سس مخصوص",
+     "price": 90000,
+     "photo": "chicken-burger",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "desserts",
+   "name": "دسر",
+   "name_en": "Desserts",
+   "icon": "dessert",
+   "photo": "baklava",
+   "description": "پایانی شیرین با دسرهای سنتی.",
+   "items": [
+    {
+     "slug": "khagineh",
+     "name": "خاگینه",
+     "name_en": "Khagineh",
+     "description": "",
+     "price": 30000,
+     "photo": "khagineh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    },
+    {
+     "slug": "baklava",
+     "name": "باقلوا",
+     "name_en": "Baklava",
+     "description": "",
+     "price": 30000,
+     "photo": "baklava",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": true,
+     "variants": []
+    }
+   ]
+  },
+  {
+   "slug": "drinks",
+   "name": "نوشیدنی",
+   "name_en": "Drinks",
+   "icon": "cup",
+   "photo": "doogh",
+   "description": "نوشیدنی‌های خنک و دوغ محلی.",
+   "items": [
+    {
+     "slug": "soda-can",
+     "name": "نوشابه قوطی",
+     "name_en": "Soft Drink (Can)",
+     "description": "",
+     "price": null,
+     "photo": "soft-drink-can",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "malt-drink-can",
+     "name": "دلستر قوطی",
+     "name_en": "Malt Beverage (Can)",
+     "description": "",
+     "price": null,
+     "photo": "malt-drink",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "local-doogh-single",
+     "name": "دوغ محلی یک‌نفره",
+     "name_en": "Local Doogh (Single)",
+     "description": "",
+     "price": null,
+     "photo": "doogh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "doogh-glass",
+     "name": "دوغ لیوانی",
+     "name_en": "Doogh (Glass)",
+     "description": "",
+     "price": null,
+     "photo": "doogh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "mineral-water-single",
+     "name": "آب معدنی یک‌نفره",
+     "name_en": "Mineral Water (Small)",
+     "description": "",
+     "price": null,
+     "photo": "mineral-water",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "energy-drink",
+     "name": "نوشابه انرژی‌زا",
+     "name_en": "Energy Drink",
+     "description": "",
+     "price": null,
+     "photo": "energy-drink",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "soda-family",
+     "name": "نوشابه ۱٫۵ لیتری",
+     "name_en": "Soft Drink (1.5 L)",
+     "description": "",
+     "price": null,
+     "photo": "soft-drink-bottle",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "malt-drink-family",
+     "name": "دلستر ۱ لیتری",
+     "name_en": "Malt Beverage (1 L)",
+     "description": "",
+     "price": null,
+     "photo": "malt-drink",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "local-doogh-family",
+     "name": "دوغ محلی ۱٫۵ لیتری",
+     "name_en": "Local Doogh (1.5 L)",
+     "description": "",
+     "price": null,
+     "photo": "doogh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "doogh-family",
+     "name": "دوغ ۱٫۵ لیتری",
+     "name_en": "Doogh (1.5 L)",
+     "description": "",
+     "price": null,
+     "photo": "doogh",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    },
+    {
+     "slug": "mineral-water-family",
+     "name": "آب معدنی ۱٫۵ لیتری",
+     "name_en": "Mineral Water (1.5 L)",
+     "description": "",
+     "price": null,
+     "photo": "mineral-water",
+     "is_featured": false,
+     "is_spicy": false,
+     "is_vegetarian": false,
+     "variants": []
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{% load saray %}
+<footer class="site-footer" id="site-footer">
+  <div class="site-footer__glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="site-footer__cta" data-reveal>
+      <div>
+        <p class="eyebrow eyebrow--light">میزتان آماده است</p>
+        <p class="site-footer__cta-title">امشب مهمان آتش و زعفران سارای باشید.</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+        <a class="btn btn--ghost-light" href="{% url 'menu' %}"><span>دیدن منو</span><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="logo" href="{% url 'home' %}" aria-label="{{ site.name }}، صفحه‌ی اصلی">{% include 'saray_menu/partials/logo_svg.html' %}</a>
+        <p>{{ site.tagline|default:"کباب زغالی و دستپخت اصیل ایرانی در تبریز" }}</p>
+        {% if site.instagram_url or site.telegram_url %}
+        <ul class="socials" role="list">
+          {% if site.instagram_url %}<li><a class="icon-btn icon-btn--ring" href="{{ site.instagram_url }}" rel="noopener" target="_blank"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg><span class="sr-only">اینستاگرام سارای</span></a></li>{% endif %}
+          {% if site.telegram_url %}<li><a class="icon-btn icon-btn--ring" href="{{ site.telegram_url }}" rel="noopener" target="_blank"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg><span class="sr-only">تلگرام سارای</span></a></li>{% endif %}
+        </ul>
+        {% endif %}
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">نشانی</h2>
+        <address>
+          <ul class="info-list" role="list">
+            <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>{{ site.address }}</span></li>
+            {% if site.phone %}<li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></li>{% endif %}
+          </ul>
+        </address>
+      </div>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">ساعت کاری</h2>
+        <ul class="info-list" role="list">
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg><span>{{ site.opening_hours_text }}</span></li>
+        </ul>
+        <p class="open-status open-status--footer" data-open-status data-opens="{{ site.opens_at|time:'H:i' }}" data-closes="{{ site.closes_at|time:'H:i' }}" hidden><span class="open-status__dot"></span><span data-open-text></span></p>
+      </div>
+
+      <nav class="site-footer__col" aria-label="پیوندهای پایین صفحه">
+        <h2 class="site-footer__title">دسترسی سریع</h2>
+        <ul class="link-list" role="list">
+          <li><a href="{% url 'menu' %}">منوی غذا</a></li>
+          <li><a href="{% url 'reservations:create' %}">رزرو میز</a></li>
+          <li><a href="{% url 'about' %}">درباره ما</a></li>
+          <li><a href="{% url 'contact' %}">تماس و مسیریابی</a></li>
+          <li><a href="{% url 'credits' %}">منابع تصاویر</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© {{ current_year_fa }} {{ site.name }}. همه‌ی حقوق محفوظ است.</p>
+      <p class="site-footer__credit">طراحی و توسعه: <a href="https://noronet.co" rel="noopener" target="_blank" dir="ltr">noronet.co</a></p>
+    </div>
+  </div>
+</footer>

@@ -1,1 +1,3 @@
-Django>=5.2,<6.2
+Django>=6.1,<6.2
+Pillow>=11,<14
+whitenoise>=6.7,<7

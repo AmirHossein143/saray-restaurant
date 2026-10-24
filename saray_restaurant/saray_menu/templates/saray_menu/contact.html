@@ -1,0 +1,112 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block title %}تماس و مسیریابی | {{ site.name }}{% endblock %}
+{% block meta_description %}نشانی، تلفن و ساعت کاری {{ site.name }}: {{ site.address }}. تلفن {{ site.phone_display }}. {{ site.opening_hours_text }}.{% endblock %}
+{% block og_title %}تماس با {{ site.name }}{% endblock %}
+{% block og_description %}{{ site.address }}{% if site.phone_display %}؛ تلفن {{ site.phone_display }}{% endif %}. {{ site.opening_hours_text }}.{% endblock %}
+{% block body_class %}page page--contact has-cta{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--short" aria-labelledby="contact-title">
+  <img class="page-hero__img" src="{% static 'saray_menu/img/site/hero-2.webp' %}" srcset="{% static 'saray_menu/img/site/hero-2-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-2.webp' %} 2000w" sizes="100vw" alt="" width="2000" height="1200" fetchpriority="high" decoding="async">
+  <div class="page-hero__shade" aria-hidden="true"></div>
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="eyebrow" data-hero-in>تماس با ما</p>
+    <h1 class="page-title" id="contact-title" data-hero-in>به سارای <em>خوش آمدید</em></h1>
+    <p class="page-hero__lead" data-hero-in>برای رزرو، سفارش یا هر پرسشی، همکاران ما هر روز پاسخگوی شما هستند.</p>
+  </div>
+</section>
+
+<section class="section section--ivory contact" aria-label="راه‌های ارتباطی">
+  <div class="container">
+    <ul class="contact-cards" role="list">
+      {% if site.phone %}
+      <li class="contact-card contact-card--accent" data-reveal style="--i: 0">
+        <span class="contact-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-phone"/></svg></span>
+        <h2 class="contact-card__title">تلفن</h2>
+        <p class="contact-card__value"><a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></p>
+        <p class="contact-card__hint">برای رزرو و هماهنگی مراسم</p>
+      </li>
+      {% endif %}
+      <li class="contact-card" data-reveal style="--i: 1">
+        <span class="contact-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-pin"/></svg></span>
+        <h2 class="contact-card__title">نشانی</h2>
+        <p class="contact-card__value">{{ site.address }}</p>
+        <p class="contact-card__hint">مسیریابی با نقشه‌های پایین صفحه</p>
+      </li>
+      <li class="contact-card" data-reveal style="--i: 2">
+        <span class="contact-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-clock"/></svg></span>
+        <h2 class="contact-card__title">ساعت کاری</h2>
+        <p class="contact-card__value">{{ site.opening_hours_text }}</p>
+        <p class="open-status open-status--light" data-open-status data-opens="{{ site.opens_at|time:'H:i' }}" data-closes="{{ site.closes_at|time:'H:i' }}" hidden><span class="open-status__dot" aria-hidden="true"></span><span data-open-text></span></p>
+      </li>
+      {% if site.instagram_url or site.telegram_url %}
+      <li class="contact-card" data-reveal style="--i: 3">
+        <span class="contact-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-sparkle"/></svg></span>
+        <h2 class="contact-card__title">شبکه‌های اجتماعی</h2>
+        <ul class="socials socials--dark" role="list">
+          {% if site.instagram_url %}<li><a class="social-link" href="{{ site.instagram_url }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-instagram"/></svg>اینستاگرام</a></li>{% endif %}
+          {% if site.telegram_url %}<li><a class="social-link" href="{{ site.telegram_url }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-telegram"/></svg>تلگرام</a></li>{% endif %}
+        </ul>
+      </li>
+      {% endif %}
+    </ul>
+
+    <div class="contact__grid">
+      <div class="hours-card" data-reveal>
+        {% if site.closes_at|time:'H:i' == '23:59' or site.closes_at|time:'H:i' == '00:00' %}{% firstof 'نیمه‌شب' as close_label %}{% else %}{% firstof site.closes_at|time:'H:i'|fa_digits as close_label %}{% endif %}
+        <h2 class="hours-card__title"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg>ساعت‌های پذیرایی</h2>
+        <table class="hours-table" data-hours>
+          <caption class="sr-only">ساعت کاری در روزهای هفته</caption>
+          <tbody>
+            <tr data-day="6"><th scope="row">شنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="0"><th scope="row">یکشنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="1"><th scope="row">دوشنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="2"><th scope="row">سه‌شنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="3"><th scope="row">چهارشنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="4"><th scope="row">پنج‌شنبه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+            <tr data-day="5"><th scope="row">جمعه</th><td>{{ site.opens_at|time:'H:i'|fa_digits }} تا {{ close_label }}</td></tr>
+          </tbody>
+        </table>
+        <p class="hours-card__note">ساعت کاری ممکن است در مناسبت‌های خاص تغییر کند؛ برای اطمینان پیش از آمدن تماس بگیرید.</p>
+      </div>
+
+      <div class="contact__map" data-reveal>
+        {% include 'saray_menu/partials/map_embed.html' %}
+        <div class="contact__maps">
+          <p class="visit__maps-label">مسیریابی با</p>
+          {% include 'saray_menu/partials/map_links.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if site.reservations_enabled or site.phone %}
+<section class="cta-band" aria-labelledby="contact-cta">
+  <div class="girih girih--light" aria-hidden="true"></div>
+  <div class="container cta-band__inner" data-reveal>
+    <div class="cta-band__text">
+      {% if site.reservations_enabled %}
+      <p class="eyebrow eyebrow--light">رزرو آنلاین</p>
+      <h2 class="cta-band__title" id="contact-cta">میزتان را همین حالا رزرو کنید.</h2>
+      <p>تاریخ، ساعت و تعداد مهمان‌ها را انتخاب کنید؛ ما برای تأیید تماس می‌گیریم.</p>
+      {% else %}
+      <p class="eyebrow eyebrow--light">رزرو تلفنی</p>
+      <h2 class="cta-band__title" id="contact-cta">میزتان را با یک تماس رزرو کنید.</h2>
+      <p>{{ site.opening_hours_text }}</p>
+      {% endif %}
+    </div>
+    <div class="btn-row">
+      {% if site.reservations_enabled %}
+      <a class="btn btn--light btn--lg" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+      {% else %}
+      <a class="btn btn--light btn--lg" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span dir="ltr">{{ site.phone_display|fa_digits }}</span></a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

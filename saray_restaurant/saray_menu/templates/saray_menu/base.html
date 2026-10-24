@@ -1,0 +1,71 @@
+{% load static saray %}<!doctype html>
+<html lang="fa" dir="rtl" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{{ site.name }} | کباب زغالی و غذای ایرانی در تبریز{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ site.name }} در باغمیشه‌ی تبریز؛ چلوکباب زغالی، خورش‌های ایرانی، استیک، پیتزا و برگر. {{ site.opening_hours_text }}. رزرو میز: {{ site.phone_display }}{% endblock %}">
+  {% block canonical_tags %}<link rel="canonical" href="{% block canonical %}{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% endblock %}">{% endblock %}
+  <meta name="theme-color" content="#15110E">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+
+  <meta property="og:type" content="{% block og_type %}restaurant.restaurant{% endblock %}">
+  <meta property="og:locale" content="fa_IR">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{% block og_title %}{{ site.name }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ site.tagline|default:'کباب زغالی و دستپخت اصیل ایرانی در باغمیشه‌ی تبریز' }}؛ {{ site.opening_hours_text }}.{% endblock %}">
+  {% block og_url %}<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">{% endblock %}
+  <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'saray_menu/img/brand/og-image.jpg' %}{% endblock %}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ site.name }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="{% static 'saray_menu/img/brand/favicon.svg' %}" type="image/svg+xml">
+  <link rel="mask-icon" href="{% static 'saray_menu/img/brand/mark.svg' %}" color="#C8902E">
+  <link rel="preload" href="{% static 'saray_menu/fonts/vazirmatn/Vazirmatn-wght.woff2' %}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{% static 'saray_menu/fonts/fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'saray_menu/css/site.css' %}">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  {% block extra_head %}{% endblock %}
+  {% json_ld_restaurant %}
+</head>
+<body class="{% block body_class %}page{% endblock %}" data-placeholder="{% static 'saray_menu/img/ui/placeholder.webp' %}">
+  {% include 'saray_menu/partials/icons.svg' %}
+  <a class="skip-link" href="#main">پرش به محتوای اصلی</a>
+
+  {% if site.announcement %}
+  <div class="announce" role="note">
+    <div class="container announce__inner">
+      <svg class="icon icon--xs" aria-hidden="true"><use href="#i-sparkle"/></svg>
+      <p>{{ site.announcement }}</p>
+    </div>
+  </div>
+  {% endif %}
+
+  {% include 'saray_menu/partials/header.html' %}
+
+  <main id="main" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'saray_menu/partials/footer.html' %}
+
+  <div class="fab-stack">
+    <button class="fab fab--top" type="button" data-back-to-top hidden aria-label="بازگشت به بالای صفحه">
+      <svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>
+    </button>
+    {% if site.phone %}
+    <a class="fab fab--call" href="tel:{{ site.phone }}" aria-label="تماس با رستوران: {{ site.phone_display }}">
+      <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+    </a>
+    {% endif %}
+  </div>
+
+  {% block dialogs %}{% endblock %}
+  <script src="{% static 'saray_menu/js/site.js' %}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

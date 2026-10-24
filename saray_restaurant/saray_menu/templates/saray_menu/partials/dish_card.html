@@ -1,0 +1,41 @@
+{% load saray %}{% with variants=item.variants.all %}
+<article class="dish{% if compact %} dish--compact{% endif %}{% if item.is_featured %} dish--featured{% endif %}" id="dish-{{ item.slug }}"
+  data-dish
+  data-search="{{ item.name }} {{ item.name_en }} {{ item.description }} {{ category.name }}"
+  data-veg="{{ item.is_vegetarian|yesno:'1,0' }}" data-spicy="{{ item.is_spicy|yesno:'1,0' }}" data-featured="{{ item.is_featured|yesno:'1,0' }}"
+  data-photo="{{ item.photo_url }}" data-category="{{ category.name }}">
+  {% if not compact %}
+  <div class="dish__media">
+    <img src="{{ item.photo_sm_url }}" srcset="{{ item.photo_sm_url }} 600w, {{ item.photo_url }} 1200w" sizes="(min-width: 64em) 200px, 128px" width="600" height="450" alt="{{ item.name }}" loading="lazy" decoding="async">
+  </div>
+  {% endif %}
+  <div class="dish__body">
+    <div class="dish__head">
+      <h3 class="dish__name">{{ item.name }}</h3>
+      <span class="dish__leader" aria-hidden="true"></span>
+      {% if item.price %}
+      <p class="price"><span class="price__num">{{ item.price|price_short }}</span><span class="price__unit">هزار تومان</span></p>
+      {% elif not variants %}
+      <p class="price price--ask">{% if compact %}از همکاران ما بپرسید{% else %}قیمت را از همکاران ما بپرسید{% endif %}</p>
+      {% endif %}
+    </div>
+    {% if item.name_en %}<p class="dish__en" lang="en" dir="ltr">{{ item.name_en }}</p>{% endif %}
+    {% if item.description %}<p class="dish__desc">{{ item.description }}</p>{% endif %}
+    {% if variants and not item.price %}
+    <ul class="variants" role="list">
+      {% for v in variants %}<li class="variant"><span class="variant__label">{{ v.label|fa_digits }}</span><span class="variant__price"><b>{{ v.price|price_short }}</b> <small>هزار تومان</small></span></li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if item.is_featured or item.is_spicy or item.is_vegetarian %}
+    <ul class="badges" role="list">
+      {% if item.is_featured %}<li class="badge badge--chef"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-star"/></svg>پیشنهاد سرآشپز</li>{% endif %}
+      {% if item.is_spicy %}<li class="badge badge--spicy"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-chili"/></svg>تند</li>{% endif %}
+      {% if item.is_vegetarian %}<li class="badge badge--veg"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-leaf"/></svg>گیاهی</li>{% endif %}
+    </ul>
+    {% endif %}
+  </div>
+  {% if not compact %}
+  <button class="dish__hit" type="button" aria-haspopup="dialog" hidden><span class="sr-only">جزئیات {{ item.name }}</span></button>
+  {% endif %}
+</article>
+{% endwith %}

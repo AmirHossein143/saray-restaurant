@@ -1,0 +1,83 @@
+{% extends "admin/index.html" %}
+{% load saray_admin saray %}
+
+{% block content %}
+{% saray_dashboard as dash %}
+<section class="sr-dash" aria-labelledby="sr-dash-title">
+  <div class="sr-dash__head">
+    <div>
+      <h2 class="sr-dash__title" id="sr-dash-title">
+        خوش آمدید{% if user.first_name %}، {{ user.first_name }}{% endif %}
+      </h2>
+      <p class="sr-dash__date">{{ dash.today_label }}</p>
+    </div>
+    <div class="sr-dash__actions">
+      {% if dash.reservations %}
+        <a class="sr-btn sr-btn--ghost" href="{{ dash.reservations.add_url }}">ثبت رزرو تلفنی</a>
+      {% endif %}
+      {% if request.user.is_superuser %}
+        <a class="sr-btn sr-btn--ghost" href="{% url 'studio:index' %}" dir="ltr">Data Studio</a>
+      {% endif %}
+      {% if site_url %}
+        <a class="sr-btn" href="{{ site_url }}" target="_blank" rel="noopener">مشاهده سایت</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="sr-cards">
+    {% if dash.reservations %}
+      <a class="sr-card sr-card--today" href="{{ dash.reservations.today_url }}">
+        <span class="sr-card__label">رزروهای امروز</span>
+        <span class="sr-card__value">{{ dash.reservations.today_count }}</span>
+        <span class="sr-card__meta">{{ dash.reservations.today_guests }} مهمان · بدون لغوشده‌ها</span>
+      </a>
+      <a class="sr-card sr-card--pending" href="{{ dash.reservations.pending_url }}">
+        <span class="sr-card__label">در انتظار تایید</span>
+        <span class="sr-card__value">{{ dash.reservations.pending_count }}</span>
+        <span class="sr-card__meta">امروز و روزهای آینده</span>
+      </a>
+      <a class="sr-card sr-card--week" href="{{ dash.reservations.week_url }}">
+        <span class="sr-card__label">۷ روز آینده</span>
+        <span class="sr-card__value">{{ dash.reservations.week_count }}</span>
+        <span class="sr-card__meta">{{ dash.reservations.week_guests }} مهمان · امروز تا {{ dash.reservations.week_until }}</span>
+      </a>
+    {% endif %}
+    {% if dash.menu %}
+      <a class="sr-card sr-card--menu" href="{{ dash.menu.url }}">
+        <span class="sr-card__label">غذاهای موجود</span>
+        <span class="sr-card__value">{{ dash.menu.available }}<small> / {{ dash.menu.total }}</small></span>
+        <span class="sr-card__meta">{{ dash.menu.unavailable }} غذا ناموجود</span>
+      </a>
+    {% endif %}
+  </div>
+
+  {% if dash.reservations %}
+  <div class="module sr-today-list">
+    <h2><a href="{{ dash.reservations.today_url }}">رزروهای امروز</a></h2>
+    {% if dash.reservations.today %}
+      {% include "admin/saray/reservation_table.html" with rows=dash.reservations.today show_buttons=dash.reservations.can_change next=request.get_full_path %}
+    {% else %}
+      <p class="sr-empty">برای امروز رزروی ثبت نشده است.</p>
+    {% endif %}
+  </div>
+
+  <div class="module sr-today-list sr-today-list--tomorrow">
+    <h2><a href="{{ dash.reservations.tomorrow_url }}">فردا — {{ dash.reservations.tomorrow_label }}</a></h2>
+    {% if dash.reservations.tomorrow %}
+      {% include "admin/saray/reservation_table.html" with rows=dash.reservations.tomorrow show_buttons=dash.reservations.can_change next=request.get_full_path %}
+    {% else %}
+      <p class="sr-empty">برای فردا هنوز رزروی ثبت نشده است.</p>
+    {% endif %}
+  </div>
+  <script>
+    document.addEventListener('submit', function (event) {
+      var button = event.submitter || event.target.querySelector('[data-confirm]');
+      if (button && button.dataset && button.dataset.confirm && !window.confirm(button.dataset.confirm)) {
+        event.preventDefault();
+      }
+    });
+  </script>
+  {% endif %}
+</section>
+{{ block.super }}
+{% endblock %}

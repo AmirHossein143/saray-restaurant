@@ -1,0 +1,256 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block body_class %}page page--home has-cta{% endblock %}
+
+{% block extra_head %}
+<link rel="preload" as="image" href="{% static 'saray_menu/img/site/hero-1.webp' %}" imagesrcset="{% static 'saray_menu/img/site/hero-1-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-1.webp' %} 2000w" imagesizes="100vw" fetchpriority="high">
+{% endblock %}
+
+{% block content %}
+{# ───────────── Hero ───────────── #}
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="hero__slides" data-slides>
+    <img class="hero__slide is-active" src="{% static 'saray_menu/img/site/hero-1.webp' %}" srcset="{% static 'saray_menu/img/site/hero-1-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-1.webp' %} 2000w" sizes="100vw" alt="" width="2000" height="1200" fetchpriority="high" decoding="async">
+    {# Slides 2 and 3 load after the page has loaded, and only when motion is allowed (site.js). #}
+    <img class="hero__slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="{% static 'saray_menu/img/site/hero-2.webp' %}" data-srcset="{% static 'saray_menu/img/site/hero-2-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-2.webp' %} 2000w" sizes="100vw" alt="" width="2000" height="1200" decoding="async">
+    <img class="hero__slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="{% static 'saray_menu/img/site/hero-3.webp' %}" data-srcset="{% static 'saray_menu/img/site/hero-3-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-3.webp' %} 2000w" sizes="100vw" alt="" width="2000" height="1200" decoding="async">
+  </div>
+  <div class="hero__shade" aria-hidden="true"></div>
+  <div class="hero__pattern" aria-hidden="true"></div>
+  <canvas class="hero__embers" data-embers aria-hidden="true"></canvas>
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="hero__eyebrow" data-hero-in>
+        <span class="hero__eyebrow-mark" aria-hidden="true"><svg class="icon icon--xs"><use href="#i-star"/></svg></span>
+        <span>کباب‌خانه‌ی زغالی</span><span class="dot-sep" aria-hidden="true"></span><span>باغمیشه، تبریز</span>
+      </p>
+      <h1 class="hero__title" id="hero-title" data-hero-in>
+        <span class="hero__kicker">{{ site.name }}</span>
+        <span class="hero__line">طعم آتش،</span>
+        <em class="hero__line hero__line--accent">عطر زعفران</em>
+      </h1>
+      <p class="hero__lead" data-hero-in>{{ site.tagline|default:"کباب زغالی و دستپخت اصیل ایرانی در قلب تبریز" }}؛ سفره‌ای گرم برای ناهارهای دلچسب و شام‌های طولانی با خانواده و دوستان.</p>
+      <div class="hero__actions" data-hero-in>
+        <a class="btn btn--primary btn--lg" href="{% url 'menu' %}">
+          <span>مشاهده‌ی منو</span><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn--ghost-light btn--lg" href="{% url 'reservations:create' %}">
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__bar" data-hero-in>
+      <p class="open-status" data-open-status data-opens="{{ site.opens_at|time:'H:i' }}" data-closes="{{ site.closes_at|time:'H:i' }}" hidden>
+        <span class="open-status__dot" aria-hidden="true"></span><span data-open-text></span>
+      </p>
+      <ul class="hero__facts" role="list">
+        <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg><span>{{ site.opening_hours_text }}</span></li>
+        <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>{{ site.address }}</span></li>
+        {% if site.phone %}<li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></li>{% endif %}
+      </ul>
+      <div class="hero__controls" data-slide-controls hidden>
+        <div class="hero__dots" role="group" aria-label="تصاویر پس‌زمینه">
+          <button type="button" class="hero__dot is-active" aria-pressed="true" data-slide-to="0"><span class="sr-only">تصویر ۱</span></button>
+          <button type="button" class="hero__dot" aria-pressed="false" data-slide-to="1"><span class="sr-only">تصویر ۲</span></button>
+          <button type="button" class="hero__dot" aria-pressed="false" data-slide-to="2"><span class="sr-only">تصویر ۳</span></button>
+        </div>
+        <button type="button" class="hero__pause" data-slide-pause>
+          <svg class="icon icon--xs" aria-hidden="true"><use href="#i-pause"/></svg>
+          <span class="sr-only">توقف نمایش خودکار تصاویر</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <a class="hero__scroll" href="#{% if featured_items %}signature{% elif categories %}categories{% else %}story{% endif %}" aria-label="رفتن به ادامه‌ی صفحه"><span></span></a>
+</section>
+
+{# ───────────── Marquee ───────────── #}
+{% if featured_items %}
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {% for pass in "12" %}
+    <div class="marquee__group">
+      {% for item in featured_items %}<span class="marquee__item">{{ item.name }}</span><svg class="marquee__star" viewBox="0 0 24 24"><use href="#i-star"/></svg>{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{# ───────────── Signature dishes ───────────── #}
+{% if featured_items %}
+<section class="section section--dark signature" id="signature" aria-labelledby="signature-title">
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container">
+    <header class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="eyebrow">پیشنهاد سرآشپز</p>
+        <h2 class="section-title" id="signature-title">امضای <em>سارای</em></h2>
+      </div>
+      <div class="section-head__aside">
+        <p class="section-lead">چند انتخاب از آشپزخانه‌ی ما که بیش از همه به آن‌ها می‌بالیم؛ از چلوکباب مخصوص تا ساچ کاورمای داغ.</p>
+        <a class="link-arrow" href="{% url 'menu' %}">منوی کامل<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </header>
+
+    <ul class="sig-grid" role="list" data-scroller>
+      {% for item in featured_items %}
+      <li class="sig-card" data-reveal style="--i: {{ forloop.counter0 }}">
+        <a class="sig-card__link" href="{% url 'menu' %}#dish-{{ item.slug }}">
+          <div class="sig-card__media">
+            <img src="{{ item.photo_sm_url }}" srcset="{{ item.photo_sm_url }} 600w, {{ item.photo_url }} 1200w" sizes="(min-width: 64em) 300px, 76vw" width="600" height="450" alt="{{ item.name }}" loading="lazy" decoding="async">
+          </div>
+          <div class="sig-card__body">
+            <span class="sig-card__cat">{{ item.category.name }}</span>
+            <h3 class="sig-card__name">{{ item.name }}</h3>
+            {% if item.name_en %}<p class="sig-card__en" lang="en" dir="ltr">{{ item.name_en }}</p>{% endif %}
+            <p class="sig-card__price">
+              {% if item.price %}<b>{{ item.price|price_short }}</b> هزار تومان
+              {% elif item.min_price %}از <b>{{ item.min_price|price_short }}</b> هزار تومان
+              {% else %}قیمت را از همکاران ما بپرسید{% endif %}
+            </p>
+          </div>
+          <span class="sig-card__go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{# ───────────── Categories ───────────── #}
+{% if categories %}
+<section class="section section--ivory cats" id="categories" aria-labelledby="cats-title">
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <p class="eyebrow eyebrow--dark">منوی سارای</p>
+      <h2 class="section-title" id="cats-title">از سیخ کباب تا <em>فنجان آخر</em></h2>
+      {% include 'saray_menu/partials/ornament.html' with tone='dark' %}
+      <p class="section-lead">چلوکباب و خورش‌های ایرانی در کنار استیک، پاستا، پیتزا و برگر؛ دسته‌ی دلخواهتان را انتخاب کنید.</p>
+    </header>
+
+    <ul class="cat-grid" role="list">
+      {# categories with nothing available are skipped; the first visible tile is the large one (CSS :first-child) #}
+      {% for c in categories %}{% if c.item_count %}
+      <li class="cat-tile{% if forloop.first %} cat-tile--hero{% endif %}" data-reveal style="--i: {{ forloop.counter0 }}">
+        <a class="cat-tile__link" href="{% url 'menu' %}#{{ c.slug }}">
+          <img class="cat-tile__img" src="{{ c.photo_sm_url }}" srcset="{{ c.photo_sm_url }} 600w, {{ c.photo_url }} 1200w" sizes="{% if forloop.first %}(min-width: 48em) 66vw, 100vw{% else %}(min-width: 48em) 33vw, 50vw{% endif %}" width="600" height="450" alt="" loading="lazy" decoding="async">
+          <span class="cat-tile__icon" aria-hidden="true"><svg class="icon"><use href="#i-{{ c.icon|default:'star' }}"/></svg></span>
+          <span class="cat-tile__text">
+            <span class="cat-tile__name">{{ c.name }}</span>
+            <span class="cat-tile__meta"><span lang="en" dir="ltr">{{ c.name_en }}</span>{% if c.item_count %}<span class="dot-sep" aria-hidden="true"></span><span>{{ c.item_count|fa_digits }} انتخاب</span>{% endif %}</span>
+          </span>
+          <span class="cat-tile__go" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg></span>
+        </a>
+      </li>
+      {% endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{# ───────────── The grill ───────────── #}
+<section class="section section--dark story" id="story" aria-labelledby="story-title">
+  <div class="container story__grid">
+    <figure class="story__media" data-reveal>
+      <div class="story__frame">
+        <img src="{% static 'saray_menu/img/site/grill.webp' %}" srcset="{% static 'saray_menu/img/site/grill-md.webp' %} 1000w, {% static 'saray_menu/img/site/grill.webp' %} 1600w" sizes="(min-width: 56em) 45vw, 100vw" alt="سیخ‌های کباب روی آتش زغال" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+      <div class="story__badge" aria-hidden="true">
+        {% include 'saray_menu/partials/star.html' %}
+      </div>
+    </figure>
+    <div class="story__text" data-reveal>
+      <p class="eyebrow">آشپزخانه‌ی سارای</p>
+      <h2 class="section-title" id="story-title">صبوری<br>کنار <em>آتش زغال</em></h2>
+      <p class="section-lead">کباب خوب عجله نمی‌شناسد. گوشت تازه، زعفرانِ به‌اندازه و آتشی که آرام‌آرام سرخش می‌کند؛ همین سادگی است که طعم کباب‌های سارای را می‌سازد.</p>
+      <p>سیخ‌ها یکی‌یکی روی زغال می‌روند، برنج ایرانی با زعفران دم می‌کشد و خورش‌ها با حوصله جا می‌افتند. ما همان چیزی را سر سفره می‌آوریم که دوست داریم برای خانواده‌ی خودمان بپزیم.</p>
+      <a class="link-arrow link-arrow--light" href="{% url 'about' %}">داستان سارای<svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+{# ───────────── Experience ───────────── #}
+<section class="section section--sand experience" aria-labelledby="exp-title">
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <p class="eyebrow eyebrow--dark">حال‌وهوای سارای</p>
+      <h2 class="section-title" id="exp-title">مهمان‌نوازی <em>تبریزی</em></h2>
+    </header>
+    <ul class="exp-grid" role="list">
+      <li class="exp" data-reveal style="--i: 0">
+        <span class="exp__icon" aria-hidden="true"><svg class="icon"><use href="#i-flame"/></svg></span>
+        <h3 class="exp__title">کباب روی زغال</h3>
+        <p>کباب‌ها روی آتش زغال آماده می‌شوند؛ با همان عطر دودیِ آشنایی که از سر کوچه به استقبالتان می‌آید.</p>
+      </li>
+      <li class="exp" data-reveal style="--i: 1">
+        <span class="exp__icon" aria-hidden="true"><svg class="icon"><use href="#i-pot"/></svg></span>
+        <h3 class="exp__title">دستپخت ایرانی</h3>
+        <p>قورمه‌سبزی و قیمه‌ای که با حوصله جا می‌افتند و برنجی که با زعفران دم می‌کشد.</p>
+      </li>
+      <li class="exp" data-reveal style="--i: 2">
+        <span class="exp__icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
+        <h3 class="exp__title">برای هر جمعی</h3>
+        <p>از ناهار دونفره تا دورهمی خانوادگی و جشن تولد؛ میزتان را {% if site.reservations_enabled %}آنلاین {% endif %}رزرو کنید و با خیال راحت بیایید.</p>
+      </li>
+      <li class="exp" data-reveal style="--i: 3">
+        <span class="exp__icon" aria-hidden="true"><svg class="icon"><use href="#i-clock"/></svg></span>
+        <h3 class="exp__title">همه‌روزه تا نیمه‌شب</h3>
+        <p>{{ site.opening_hours_text }}؛ برای ناهار، عصرانه یا شامی که دیر شروع می‌شود.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{# ───────────── Reservation band ───────────── #}
+<section class="cta-band" aria-labelledby="cta-title">
+  <div class="girih girih--light" aria-hidden="true"></div>
+  <div class="container cta-band__inner" data-reveal>
+    <div class="cta-band__text">
+      <p class="eyebrow eyebrow--light">رزرو میز</p>
+      <h2 class="cta-band__title" id="cta-title">شب‌های شلوغ، میزتان را از قبل نگه دارید.</h2>
+      {% if site.reservations_enabled %}
+      <p>رزرو آنلاین در کمتر از یک دقیقه؛ همکاران ما برای تأیید با شما تماس می‌گیرند.</p>
+      {% elif site.phone %}
+      <p>برای رزرو میز کافی است با ما تماس بگیرید؛ همکاران ما هر روز پاسخگوی شما هستند.</p>
+      {% else %}
+      <p>برای رزرو میز به رستوران سر بزنید یا از راه‌های ارتباطی ما استفاده کنید.</p>
+      {% endif %}
+    </div>
+    <div class="btn-row">
+      {% if site.reservations_enabled %}
+      <a class="btn btn--light btn--lg" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو آنلاین</span></a>
+      {% if site.phone %}<a class="btn btn--ghost-light btn--lg" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span dir="ltr">{{ site.phone_display|fa_digits }}</span></a>{% endif %}
+      {% elif site.phone %}
+      <a class="btn btn--light btn--lg" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span>رزرو تلفنی</span><span class="sr-only">: </span><span dir="ltr">{{ site.phone_display|fa_digits }}</span></a>
+      {% else %}
+      <a class="btn btn--light btn--lg" href="{% url 'contact' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>تماس و مسیریابی</span></a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{# ───────────── Visit us ───────────── #}
+<section class="section section--ivory visit" id="visit" aria-labelledby="visit-title">
+  <div class="container visit__grid">
+    <div class="visit__info" data-reveal>
+      <p class="eyebrow eyebrow--dark">ما را پیدا کنید</p>
+      <h2 class="section-title" id="visit-title">روبروی بازار ماهی،<br><em>باغمیشه</em></h2>
+      <dl class="visit__list">
+        <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg>نشانی</dt><dd>{{ site.address }}</dd></div>
+        <div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg>ساعت کاری</dt><dd>{{ site.opening_hours_text }}</dd></div>
+        {% if site.phone %}<div><dt><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg>تلفن</dt><dd><a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></dd></div>{% endif %}
+      </dl>
+      <p class="visit__maps-label">مسیریابی با</p>
+      {% include 'saray_menu/partials/map_links.html' %}
+    </div>
+    <div class="visit__map" data-reveal>
+      {% include 'saray_menu/partials/map_embed.html' %}
+    </div>
+  </div>
+</section>
+{% endblock %}

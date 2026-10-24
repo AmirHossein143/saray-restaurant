@@ -1,0 +1,26 @@
+{% extends 'saray_menu/base.html' %}
+{% load static %}
+
+{% block title %}صفحه پیدا نشد | {{ site.name }}{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex">{% endblock %}
+{% block canonical_tags %}{% endblock %}
+{% block og_url %}{% endblock %}
+{% block og_title %}صفحه پیدا نشد | {{ site.name }}{% endblock %}
+{% block body_class %}page page--error{% endblock %}
+
+{% block content %}
+<section class="error-page" aria-labelledby="err-title">
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="done__glow" aria-hidden="true"></div>
+  <div class="container container--narrow error-page__inner">
+    <p class="error-page__code" aria-hidden="true">۴۰۴</p>
+    <p class="eyebrow">صفحه پیدا نشد</p>
+    <h1 class="page-title" id="err-title">این سیخ <em>خالی</em> است!</h1>
+    <p class="page-hero__lead">صفحه‌ای که دنبالش هستید جابه‌جا شده یا دیگر وجود ندارد. شاید منو یا رزرو میز همان چیزی باشد که می‌خواهید.</p>
+    <div class="btn-row btn-row--center">
+      <a class="btn btn--primary" href="{% url 'menu' %}"><span>مشاهده‌ی منو</span><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--ghost-light" href="{% url 'home' %}">صفحه‌ی اصلی</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

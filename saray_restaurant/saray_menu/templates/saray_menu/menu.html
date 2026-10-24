@@ -1,40 +1,146 @@
-{% extends 'saray_menu/menu_layout.html' %}
-{% load static %}
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
 
-{% block body %}
-    <section class="container menu-content" aria-labelledby="menu-heading">
-        <h1 id="menu-heading" class="menu-heading">پیش غذا</h1>
-        <div class="menu-grid">
-            {% for item in menu_items %}
-                <article class="card menu-card">
-                    <div id="menu-carousel-{{ forloop.counter0 }}" class="carousel slide" data-interval="false" dir="ltr" aria-label="{{ item.name }}">
-                        <ol class="carousel-indicators">
-                            {% for image in menu_images %}
-                                <li data-target="#menu-carousel-{{ forloop.parentloop.counter0 }}" data-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
-                            {% endfor %}
-                        </ol>
-                        <div class="carousel-inner">
-                            {% for image in menu_images %}
-                                <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                                    <img class="d-block w-100" src="{% static image %}" alt="{{ item.name }} - تصویر {{ forloop.counter }}">
-                                </div>
-                            {% endfor %}
-                        </div>
-                        <a class="carousel-control-prev" href="#menu-carousel-{{ forloop.counter0 }}" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">تصویر قبلی {{ item.name }}</span>
-                        </a>
-                        <a class="carousel-control-next" href="#menu-carousel-{{ forloop.counter0 }}" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">تصویر بعدی {{ item.name }}</span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <h2 class="h3">{{ item.name }}</h2>
-                        <p class="price mb-0">{{ item.price }}</p>
-                    </div>
-                </article>
-            {% endfor %}
+{% block title %}منوی غذا و قیمت‌ها | {{ site.name }}{% endblock %}
+{% block meta_description %}منوی کامل {{ site.name }} تبریز با قیمت: چلوکباب زغالی، کباب برگ و سلطانی، خورش‌های ایرانی، استیک، ساچ کاورما، پاستا، پیتزا، برگر و نوشیدنی.{% endblock %}
+{% block og_title %}منوی {{ site.name }}{% endblock %}
+{% block og_description %}منوی کامل {{ site.name }} با قیمت به‌روز: چلوکباب زغالی، خورش‌های ایرانی، استیک، پاستا، پیتزا، برگر و نوشیدنی.{% endblock %}
+{% block body_class %}page page--menu{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--menu" aria-labelledby="menu-title">
+  <img class="page-hero__img" src="{% static 'saray_menu/img/site/spread.webp' %}" srcset="{% static 'saray_menu/img/site/spread-md.webp' %} 1000w, {% static 'saray_menu/img/site/spread.webp' %} 1600w" sizes="100vw" alt="" width="1600" height="1000" fetchpriority="high" decoding="async">
+  <div class="page-hero__shade" aria-hidden="true"></div>
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="eyebrow" data-hero-in>منوی سارای</p>
+    <h1 class="page-title" id="menu-title" data-hero-in>سفره‌ی <em>امروز</em></h1>
+    <p class="page-hero__lead" data-hero-in>
+      {% if item_count %}{{ item_count|fa_digits }} انتخاب در {{ categories|length|fa_digits }} دسته؛ {% endif %}همه‌ی قیمت‌ها به <strong>هزار تومان</strong> است.
+    </p>
+    <div class="btn-row" data-hero-in>
+      <a class="btn btn--primary" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+      <button class="btn btn--ghost-light" type="button" data-print hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-print"/></svg><span>نسخه‌ی چاپی</span></button>
+    </div>
+  </div>
+</section>
+
+<div class="menu-tools" data-menu-tools hidden>
+  <div class="container menu-tools__inner">
+    <div class="search">
+      <svg class="icon search__icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <label class="sr-only" for="menu-search">جست‌وجو در منو</label>
+      <input class="search__input" id="menu-search" type="search" placeholder="جست‌وجو: کوبیده، جوجه، پیتزا…" autocomplete="off" enterkeyhint="search" data-menu-search>
+      <button class="search__clear" type="button" data-search-clear hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-close"/></svg><span class="sr-only">پاک کردن جست‌وجو</span></button>
+    </div>
+    <div class="filters" role="group" aria-label="فیلتر غذاها">
+      <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">همه</button>
+      <button class="chip" type="button" data-filter="featured" aria-pressed="false"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-star"/></svg>پیشنهاد سرآشپز</button>
+      <button class="chip" type="button" data-filter="veg" aria-pressed="false"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-leaf"/></svg>گیاهی</button>
+      <button class="chip" type="button" data-filter="spicy" aria-pressed="false"><svg class="icon icon--xs" aria-hidden="true"><use href="#i-chili"/></svg>تند</button>
+    </div>
+    <p class="menu-tools__status" role="status" aria-live="polite" data-menu-status></p>
+  </div>
+</div>
+
+{% if item_count %}
+<nav class="cat-tabs" aria-label="دسته‌های منو" data-cat-tabs>
+  <div class="container cat-tabs__inner">
+    <button class="cat-tabs__search" type="button" data-jump-search aria-controls="menu-search" hidden>
+      <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"/></svg>
+      <span class="sr-only">جست‌وجو و فیلتر غذاها</span>
+      <span class="cat-tabs__dot" aria-hidden="true"></span>
+    </button>
+    <ul class="cat-tabs__list" role="list" data-cat-tabs-list>
+      {% for c in categories %}{% if c.available_items %}
+      <li><a class="cat-tab" href="#{{ c.slug }}" data-tab="{{ c.slug }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-{{ c.icon|default:'star' }}"/></svg><span>{{ c.name }}</span></a></li>
+      {% endif %}{% endfor %}
+    </ul>
+  </div>
+</nav>
+{% endif %}
+
+<div class="menu-body">
+  <div class="container">
+    <header class="print-only print-head">
+      <p class="print-head__name">{{ site.name }}</p>
+      <p>{{ site.address }}{% if site.phone %} · تلفن: <span dir="ltr">{{ site.phone_display|fa_digits }}</span>{% endif %} · {{ site.opening_hours_text }}</p>
+      <p>قیمت‌ها به هزار تومان · {{ jalali_today }}</p>
+    </header>
+
+    {# categories with nothing available today are left out entirely #}
+    {% for c in categories %}{% if c.available_items %}
+    <section class="menu-cat{% if c.icon == 'cup' %} menu-cat--compact{% endif %}" id="{{ c.slug }}" data-cat aria-labelledby="cat-{{ c.slug }}">
+      <header class="menu-cat__head">
+        <img class="menu-cat__img" src="{{ c.photo_url }}" srcset="{{ c.photo_sm_url }} 600w, {{ c.photo_url }} 1200w" sizes="(min-width: 75em) 1200px, 100vw" width="1200" height="900" alt="" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+        <div class="menu-cat__text">
+          <span class="menu-cat__icon" aria-hidden="true"><svg class="icon"><use href="#i-{{ c.icon|default:'star' }}"/></svg></span>
+          <div>
+            <p class="menu-cat__en" lang="en" dir="ltr">{{ c.name_en }}</p>
+            <h2 class="menu-cat__title" id="cat-{{ c.slug }}">{{ c.name }}</h2>
+            {% if c.description %}<p class="menu-cat__desc">{{ c.description|fa_digits }}</p>{% endif %}
+          </div>
         </div>
+        <span class="menu-cat__count">{{ c.available_items|length|fa_digits }} انتخاب</span>
+      </header>
+
+      <div class="dish-grid{% if c.icon == 'cup' %} dish-grid--compact{% endif %}">
+        {% for item in c.available_items %}
+          {% if c.icon == 'cup' %}
+            {% include 'saray_menu/partials/dish_card.html' with item=item category=c compact=True %}
+          {% else %}
+            {% include 'saray_menu/partials/dish_card.html' with item=item category=c compact=False %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      <p class="menu-cat__note"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"/></svg>قیمت را از همکاران ما بپرسید.</p>
     </section>
+    {% endif %}{% endfor %}
+
+    {% if not item_count %}
+    <div class="empty-state">
+      <p class="empty-state__title">منو به‌زودی به‌روز می‌شود.</p>
+      {% if site.phone %}<p>برای اطلاع از غذاهای امروز با ما تماس بگیرید: <a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></p>{% else %}<p>برای اطلاع از غذاهای امروز به رستوران سر بزنید یا <a href="{% url 'contact' %}">راه‌های تماس</a> را ببینید.</p>{% endif %}
+    </div>
+    {% endif %}
+
+    <div class="empty-state" data-menu-empty hidden>
+      <span class="empty-state__icon" aria-hidden="true"><svg class="icon"><use href="#i-search"/></svg></span>
+      <p class="empty-state__title">غذایی با این مشخصات پیدا نکردیم.</p>
+      <p>عبارت دیگری را امتحان کنید یا فیلترها را بردارید.</p>
+      <button class="btn btn--outline btn--sm" type="button" data-menu-reset>نمایش همه‌ی منو</button>
+    </div>
+
+    <aside class="menu-note">
+      <p><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"/></svg>تصاویر برای آشنایی با غذاهاست و ممکن است با سرو واقعی تفاوت داشته باشد. اگر به ماده‌ی غذایی خاصی حساسیت دارید، پیش از سفارش به همکاران ما بگویید.</p>
+    </aside>
+
+    <footer class="print-only print-foot">
+      <p>{% if site.phone %}رزرو میز: <span dir="ltr">{{ site.phone_display|fa_digits }}</span> — {% endif %}{{ request.get_host }}</p>
+    </footer>
+  </div>
+</div>
+{% endblock %}
+
+{% block dialogs %}
+<dialog class="dish-dialog" data-dish-dialog aria-labelledby="dd-title">
+  <div class="dish-dialog__inner">
+    <button class="dish-dialog__close icon-btn" type="button" data-dialog-close>
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg><span class="sr-only">بستن</span>
+    </button>
+    <div class="dish-dialog__media"><img data-dd-img alt="" width="1200" height="900" decoding="async"></div>
+    <div class="dish-dialog__body">
+      <p class="eyebrow eyebrow--dark" data-dd-cat></p>
+      <h2 class="dish-dialog__title" id="dd-title" data-dd-title></h2>
+      <p class="dish-dialog__en" lang="en" dir="ltr" data-dd-en></p>
+      <p class="dish-dialog__desc" data-dd-desc></p>
+      <div class="dish-dialog__price" data-dd-price></div>
+      <div data-dd-badges></div>
+      <div class="dish-dialog__actions">
+        <a class="btn btn--primary btn--sm" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+        {% if site.phone %}<a class="btn btn--outline btn--sm" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span>تماس</span></a>{% endif %}
+      </div>
+    </div>
+  </div>
+</dialog>
 {% endblock %}

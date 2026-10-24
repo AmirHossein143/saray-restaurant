@@ -1,0 +1,159 @@
+# Persian overrides for Django's admin/auth/forms strings.
+# Fills msgids missing or empty in Django's own fa catalog and replaces a few
+# awkward ones. Loaded via LOCALE_PATHS, which takes precedence over Django.
+# Regenerate the .mo after editing: python manage.py compilemessages
+# (or, without GNU gettext: python locale/compile_mo.py).
+msgid ""
+msgstr ""
+"Project-Id-Version: saray-restaurant\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#, python-format
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] "%(sel)s از %(cnt)s انتخاب شده"
+msgstr[1] "%(sel)s از %(cnt)s انتخاب شده"
+
+msgid "You have selected an action, and you haven’t made any changes on individual fields. You’re probably looking for the Run button rather than the Save button."
+msgstr "یک اقدام گروهی را انتخاب کرده‌اید و تغییری در فیلدها نداده‌اید. احتمالاً باید دکمهٔ «اجرا» را بزنید، نه «ذخیره»."
+
+#, python-format
+msgid "Note: Enter times in the %(timezone)s timezone. (You are %(offset)s hour ahead.)"
+msgid_plural "Note: Enter times in the %(timezone)s timezone. (You are %(offset)s hours ahead.)"
+msgstr[0] "توجه: ساعت‌ها را به وقت %(timezone)s وارد کنید. (ساعت شما %(offset)s ساعت جلوتر است.)"
+msgstr[1] "توجه: ساعت‌ها را به وقت %(timezone)s وارد کنید. (ساعت شما %(offset)s ساعت جلوتر است.)"
+
+#, python-format
+msgid "Note: Enter times in the %(timezone)s timezone. (You are %(offset)s hour behind.)"
+msgid_plural "Note: Enter times in the %(timezone)s timezone. (You are %(offset)s hours behind.)"
+msgstr[0] "توجه: ساعت‌ها را به وقت %(timezone)s وارد کنید. (ساعت شما %(offset)s ساعت عقب‌تر است.)"
+msgstr[1] "توجه: ساعت‌ها را به وقت %(timezone)s وارد کنید. (ساعت شما %(offset)s ساعت عقب‌تر است.)"
+
+#, python-format
+msgid "Today (%(date)s)"
+msgstr "امروز (%(date)s)"
+
+#, python-format
+msgid "Yesterday (%(date)s)"
+msgstr "دیروز (%(date)s)"
+
+#, python-format
+msgid "Tomorrow (%(date)s)"
+msgstr "فردا (%(date)s)"
+
+#, python-format
+msgid "Previous (%(month)s %(year)s)"
+msgstr "ماه قبل (%(month)s %(year)s)"
+
+#, python-format
+msgid "Next (%(month)s %(year)s)"
+msgstr "ماه بعد (%(month)s %(year)s)"
+
+msgid "Sunday"
+msgstr "یکشنبه"
+
+msgid "Monday"
+msgstr "دوشنبه"
+
+msgid "Tuesday"
+msgstr "سه‌شنبه"
+
+msgid "Wednesday"
+msgstr "چهارشنبه"
+
+msgid "Thursday"
+msgstr "پنج‌شنبه"
+
+msgid "Friday"
+msgstr "جمعه"
+
+msgid "Saturday"
+msgstr "شنبه"
+
+msgctxt "abbrev. day Sunday"
+msgid "Sun"
+msgstr "ی"
+
+msgctxt "abbrev. day Monday"
+msgid "Mon"
+msgstr "د"
+
+msgctxt "abbrev. day Tuesday"
+msgid "Tue"
+msgstr "س"
+
+msgctxt "abbrev. day Wednesday"
+msgid "Wed"
+msgstr "چ"
+
+msgctxt "abbrev. day Thursday"
+msgid "Thur"
+msgstr "پ"
+
+msgctxt "abbrev. day Friday"
+msgid "Fri"
+msgstr "ج"
+
+msgctxt "abbrev. day Saturday"
+msgid "Sat"
+msgstr "ش"
+
+#, python-format
+msgid "%(month)s %(day)s, %(year)s"
+msgstr "%(day)s %(month)s %(year)s"
+
+#, python-format
+msgid "%s (today, current selection)"
+msgstr "%s (امروز، انتخاب فعلی)"
+
+#, python-format
+msgid "%s (today)"
+msgstr "%s (امروز)"
+
+#, python-format
+msgid "%s (current selection)"
+msgstr "%s (انتخاب فعلی)"
+
+#, python-format
+msgid "Choose %s by selecting them and then select the \"Choose\" arrow button."
+msgstr "برای افزودن %s، آن‌ها را برگزینید و دکمهٔ پیکان «انتخاب» را بزنید."
+
+#, python-format
+msgid "Choose all %s"
+msgstr "انتخاب همهٔ %s"
+
+#, python-format
+msgid "Choose selected %s"
+msgstr "افزودن %s برگزیده"
+
+#, python-format
+msgid "Remove selected %s"
+msgstr "حذف %s برگزیده"
+
+#, python-format
+msgid "Remove %s by selecting them and then select the \"Remove\" arrow button."
+msgstr "برای حذف %s، آن‌ها را برگزینید و دکمهٔ پیکان «حذف» را بزنید."
+
+#, python-format
+msgid "Type into this box to filter down the list of selected %s."
+msgstr "برای جستجو در %s انتخاب‌شده اینجا بنویسید."
+
+msgid "(click to clear)"
+msgstr "(برای پاک کردن کلیک کنید)"
+
+#, python-format
+msgid "Remove all %s"
+msgstr "حذف همهٔ %s"
+
+#, python-format
+msgid "%s selected option not visible"
+msgid_plural "%s selected options not visible"
+msgstr[0] "%s گزینهٔ انتخاب‌شده دیده نمی‌شود"
+msgstr[1] "%s گزینهٔ انتخاب‌شده دیده نمی‌شود"
+
+msgid "server"
+msgstr "سرور"

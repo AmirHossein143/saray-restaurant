@@ -1,0 +1,100 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block title %}درباره ما | {{ site.name }}{% endblock %}
+{% block meta_description %}با {{ site.name }} آشنا شوید؛ رستورانی خانوادگی در باغمیشه‌ی تبریز با کباب زغالی، دستپخت اصیل ایرانی و مهمان‌نوازی تبریزی.{% endblock %}
+{% block og_title %}درباره‌ی {{ site.name }}{% endblock %}
+{% block og_description %}سفره‌ای به رسم تبریز: کباب روی آتش زغال، دستپخت اصیل ایرانی و مهمان‌نوازی تبریزی در {{ site.name }}، باغمیشه.{% endblock %}
+{% block body_class %}page page--about has-cta{% endblock %}
+
+{% block content %}
+<section class="page-hero" aria-labelledby="about-title">
+  <img class="page-hero__img" src="{% static 'saray_menu/img/site/tabriz.webp' %}" srcset="{% static 'saray_menu/img/site/tabriz-md.webp' %} 1000w, {% static 'saray_menu/img/site/tabriz.webp' %} 1600w" sizes="100vw" alt="" width="1600" height="1000" fetchpriority="high" decoding="async">
+  <div class="page-hero__shade" aria-hidden="true"></div>
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="eyebrow" data-hero-in>درباره ما</p>
+    <h1 class="page-title" id="about-title" data-hero-in>یک سفره،<br><em>به رسم تبریز</em></h1>
+    <p class="page-hero__lead" data-hero-in>{{ site.tagline|default:"کباب زغالی و دستپخت اصیل ایرانی در قلب تبریز" }}</p>
+  </div>
+</section>
+
+<section class="section section--ivory about" aria-label="داستان سارای">
+  <div class="container about__grid">
+    <div class="about__story" data-reveal>
+      <p class="eyebrow eyebrow--dark">داستان ما</p>
+      <h2 class="section-title">جایی برای <em>دورهمی</em></h2>
+      {% include 'saray_menu/partials/ornament.html' with tone='dark ornament--start' %}
+      <div class="prose">
+        {% if site.about_text %}
+          {{ site.about_text|linebreaks }}
+        {% else %}
+          <p>سارای جایی است برای دورهمی‌های بی‌تکلف و شام‌هایی که در یاد می‌مانند؛ با بوی کباب زغالی، عطر برنج زعفرانی و گرمای مهمان‌نوازی تبریزی.</p>
+        {% endif %}
+      </div>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="{% url 'menu' %}"><span>دیدن منو</span><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+      </div>
+    </div>
+
+    <div class="collage" data-reveal>
+      <figure class="collage__item collage__item--a">
+        <img src="{% static 'saray_menu/img/site/spread.webp' %}" srcset="{% static 'saray_menu/img/site/spread-md.webp' %} 1000w, {% static 'saray_menu/img/site/spread.webp' %} 1600w" sizes="(min-width: 56em) 34vw, 66vw" alt="سفره‌ی ایرانی با کباب، برنج زعفرانی و مخلفات" width="1600" height="1000" loading="lazy" decoding="async">
+      </figure>
+      <figure class="collage__item collage__item--b">
+        <img src="{% static 'saray_menu/img/site/grill.webp' %}" srcset="{% static 'saray_menu/img/site/grill-md.webp' %} 1000w, {% static 'saray_menu/img/site/grill.webp' %} 1600w" sizes="(min-width: 56em) 18vw, 34vw" alt="سیخ‌های کباب روی آتش زغال" width="1600" height="1000" loading="lazy" decoding="async">
+      </figure>
+      <figure class="collage__item collage__item--c">
+        <img src="{% static 'saray_menu/img/site/tabriz.webp' %}" srcset="{% static 'saray_menu/img/site/tabriz-md.webp' %} 1000w, {% static 'saray_menu/img/site/tabriz.webp' %} 1600w" sizes="(min-width: 56em) 26vw, 50vw" alt="نمایی از شهر تبریز" width="1600" height="1000" loading="lazy" decoding="async">
+      </figure>
+      <div class="collage__star" aria-hidden="true">{% include 'saray_menu/partials/star.html' %}</div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark values" aria-labelledby="values-title">
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container">
+    <header class="section-head section-head--center" data-reveal>
+      <p class="eyebrow">آنچه برایمان مهم است</p>
+      <h2 class="section-title" id="values-title">سه چیز، <em>هر روز</em></h2>
+    </header>
+    <ol class="values__grid" role="list">
+      <li class="value" data-reveal style="--i: 0">
+        <span class="value__num" aria-hidden="true">۰۱</span>
+        <span class="value__icon" aria-hidden="true"><svg class="icon"><use href="#i-flame"/></svg></span>
+        <h3 class="value__title">آتش درست</h3>
+        <p>کباب روی زغال، با حوصله و به‌اندازه؛ نه زودتر از موقع و نه دیرتر.</p>
+      </li>
+      <li class="value" data-reveal style="--i: 1">
+        <span class="value__num" aria-hidden="true">۰۲</span>
+        <span class="value__icon" aria-hidden="true"><svg class="icon"><use href="#i-pot"/></svg></span>
+        <h3 class="value__title">مواد تازه</h3>
+        <p>گوشت و سبزی تازه، برنج ایرانی و زعفران؛ پایه‌ی هر بشقابی که از آشپزخانه بیرون می‌آید.</p>
+      </li>
+      <li class="value" data-reveal style="--i: 2">
+        <span class="value__num" aria-hidden="true">۰۳</span>
+        <span class="value__icon" aria-hidden="true"><svg class="icon"><use href="#i-users"/></svg></span>
+        <h3 class="value__title">مهمان‌نوازی</h3>
+        <p>با هر سلیقه‌ای که بیایید، از کباب و خورش تا پیتزا و برگر، سر سفره‌ی سارای جا دارید.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="cta-band" aria-labelledby="about-cta">
+  <div class="girih girih--light" aria-hidden="true"></div>
+  <div class="container cta-band__inner" data-reveal>
+    <div class="cta-band__text">
+      <p class="eyebrow eyebrow--light">منتظرتان هستیم</p>
+      <h2 class="cta-band__title" id="about-cta">{{ site.opening_hours_text }}</h2>
+      <p>{{ site.address }}</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn--light btn--lg" href="{% url 'reservations:create' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span></a>
+      <a class="btn btn--ghost-light btn--lg" href="{% url 'contact' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>مسیریابی</span></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

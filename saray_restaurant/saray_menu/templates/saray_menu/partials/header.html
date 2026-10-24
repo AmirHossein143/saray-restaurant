@@ -1,0 +1,81 @@
+{% load saray %}{% with vn=request.resolver_match.view_name %}
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="logo" href="{% url 'home' %}" aria-label="{{ site.name }}، صفحه‌ی اصلی">
+      {% include 'saray_menu/partials/logo_svg.html' %}
+    </a>
+
+    <nav class="nav" aria-label="منوی اصلی">
+      <ul class="nav__list" role="list">
+        <li><a class="nav__link" href="{% url 'home' %}"{% if vn == 'home' %} aria-current="page"{% endif %}>خانه</a></li>
+        <li><a class="nav__link" href="{% url 'menu' %}"{% if vn == 'menu' %} aria-current="page"{% endif %}>منو</a></li>
+        <li><a class="nav__link" href="{% url 'reservations:create' %}"{% if vn == 'reservations:create' or vn == 'reservations:done' %} aria-current="page"{% endif %}>رزرو میز</a></li>
+        <li><a class="nav__link" href="{% url 'about' %}"{% if vn == 'about' %} aria-current="page"{% endif %}>درباره ما</a></li>
+        <li><a class="nav__link" href="{% url 'contact' %}"{% if vn == 'contact' %} aria-current="page"{% endif %}>تماس</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      {% if site.phone %}
+      <a class="header-phone" href="tel:{{ site.phone }}">
+        <span class="header-phone__icon"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <span class="header-phone__text"><small>تماس و رزرو</small><span dir="ltr">{{ site.phone_display|fa_digits }}</span></span>
+      </a>
+      {% endif %}
+      <a class="btn btn--primary btn--sm header-cta" href="{% url 'reservations:create' %}">
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg>
+        <span>رزرو میز</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="drawer" data-drawer-open>
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <span class="sr-only">باز کردن منو</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" data-drawer hidden>
+  <div class="drawer__backdrop" data-drawer-close></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="منوی سایت" tabindex="-1">
+    <div class="drawer__top">
+      <a class="logo logo--sm" href="{% url 'home' %}" aria-label="{{ site.name }}، صفحه‌ی اصلی">
+        {% include 'saray_menu/partials/logo_svg.html' %}
+      </a>
+      <button class="icon-btn" type="button" data-drawer-close>
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        <span class="sr-only">بستن منو</span>
+      </button>
+    </div>
+
+    <nav class="drawer__nav" aria-label="منوی موبایل">
+      <ol class="drawer__list" role="list">
+        <li><a href="{% url 'home' %}"{% if vn == 'home' %} aria-current="page"{% endif %}><span class="drawer__num" aria-hidden="true">۰۱</span>خانه</a></li>
+        <li><a href="{% url 'menu' %}"{% if vn == 'menu' %} aria-current="page"{% endif %}><span class="drawer__num" aria-hidden="true">۰۲</span>منو</a></li>
+        <li><a href="{% url 'reservations:create' %}"{% if vn == 'reservations:create' %} aria-current="page"{% endif %}><span class="drawer__num" aria-hidden="true">۰۳</span>رزرو میز</a></li>
+        <li><a href="{% url 'about' %}"{% if vn == 'about' %} aria-current="page"{% endif %}><span class="drawer__num" aria-hidden="true">۰۴</span>درباره ما</a></li>
+        <li><a href="{% url 'contact' %}"{% if vn == 'contact' %} aria-current="page"{% endif %}><span class="drawer__num" aria-hidden="true">۰۵</span>تماس</a></li>
+      </ol>
+    </nav>
+
+    {% if nav_categories %}
+    <div class="drawer__cats">
+      <p class="eyebrow">دسته‌های منو</p>
+      <ul class="chip-row" role="list">
+        {% for c in nav_categories %}<li><a class="chip chip--dark" href="{% url 'menu' %}#{{ c.slug }}">{{ c.name }}</a></li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="drawer__foot">
+      <ul class="info-list" role="list">
+        {% if site.phone %}<li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></li>{% endif %}
+        <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg><span>{{ site.opening_hours_text }}</span></li>
+        <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>{{ site.address }}</span></li>
+      </ul>
+      <a class="btn btn--primary btn--block" href="{% url 'reservations:create' %}">
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-calendar"/></svg><span>رزرو میز</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endwith %}

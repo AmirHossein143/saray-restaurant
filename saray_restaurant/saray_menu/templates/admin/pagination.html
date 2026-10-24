@@ -1,0 +1,13 @@
+{% load admin_list i18n saray %}{# Django's paginator with Persian digits: "۷۸ غذا" (Persian uses the singular after numbers). #}
+<nav class="paginator" aria-labelledby="pagination">
+    <h2 id="pagination" class="visually-hidden">صفحه‌بندی {{ cl.opts.verbose_name_plural }}</h2>
+    {% if pagination_required %}
+    <ul>
+    {% for i in page_range %}
+        <li>{% paginator_number cl i %}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+<span class="sr-count">{{ cl.result_count|fa_digits }} {{ cl.opts.verbose_name }}</span>
+{% if show_all_url %}<a href="{{ show_all_url }}" class="showall">{% translate 'Show all' %}</a>{% endif %}
+</nav>

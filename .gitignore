@@ -3,3 +3,9 @@ __pycache__/
 .venv/
 .test-tools/
 .test-output/
+
+# Local runtime data
+saray_restaurant/db.sqlite3
+saray_restaurant/media/
+saray_restaurant/staticfiles/
+.env

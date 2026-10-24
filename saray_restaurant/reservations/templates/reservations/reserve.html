@@ -1,0 +1,220 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block title %}رزرو میز | {{ site.name }}{% endblock %}
+{% block meta_description %}رزرو آنلاین میز در {{ site.name }} تبریز؛ روز، ساعت و تعداد مهمان‌ها را انتخاب کنید. {{ site.opening_hours_text }}.{% endblock %}
+{% block og_title %}رزرو میز در {{ site.name }}{% endblock %}
+{% block og_description %}{% if site.reservations_enabled %}رزرو آنلاین میز در {{ site.name }}، باغمیشه‌ی تبریز؛ در کمتر از یک دقیقه روز، ساعت و تعداد مهمان‌ها را انتخاب کنید.{% else %}برای رزرو میز در {{ site.name }}، باغمیشه‌ی تبریز، با ما تماس بگیرید.{% endif %}{% endblock %}
+{% block body_class %}page page--reserve has-cta{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--short" aria-labelledby="reserve-title">
+  <img class="page-hero__img" src="{% static 'saray_menu/img/site/hero-3.webp' %}" srcset="{% static 'saray_menu/img/site/hero-3-md.webp' %} 1000w, {% static 'saray_menu/img/site/hero-3.webp' %} 2000w" sizes="100vw" alt="" width="2000" height="1200" fetchpriority="high" decoding="async">
+  <div class="page-hero__shade" aria-hidden="true"></div>
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="eyebrow" data-hero-in>{% if site.reservations_enabled %}رزرو آنلاین{% else %}رزرو میز{% endif %}</p>
+    <h1 class="page-title" id="reserve-title" data-hero-in>میزتان را <em>رزرو کنید</em></h1>
+    <p class="page-hero__lead" data-hero-in>{% if site.reservations_enabled %}روز، ساعت و تعداد مهمان‌ها را انتخاب کنید؛ همکاران ما برای تأیید با شما تماس می‌گیرند.{% else %}رزرو میز فعلاً تلفنی انجام می‌شود؛ همکاران ما هر روز پاسخگوی شما هستند.{% endif %}</p>
+  </div>
+</section>
+
+<section class="section section--ivory reserve" aria-label="فرم رزرو">
+  <div class="container reserve__grid">
+    {% if site.reservations_enabled %}
+    <form class="reserve-form" method="post" action="{% url 'reservations:create' %}" novalidate data-reserve-form>
+      {% csrf_token %}
+
+      {% if form.errors %}
+      <div class="alert alert--error" role="alert" tabindex="-1" data-form-alert>
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        <div>
+          <p class="alert__title">رزرو ثبت نشد؛ لطفاً موارد زیر را بررسی کنید.</p>
+          {% if form.non_field_errors %}
+          <ul class="alert__list" role="list">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {# 1 — Date #}
+      {# today_slot is the most bookable slot: if even it is unavailable, today is full #}
+      {% with today_slot=time_choices|dictsortreversed:'available_today'|first %}
+      <fieldset class="step{% if form.date.errors %} has-error{% endif %}"{% if form.date.errors %} aria-describedby="{{ form.date.auto_id }}_error"{% endif %}>
+        <legend class="step__legend"><span class="step__num" aria-hidden="true">۱</span>چه روزی؟</legend>
+        <div class="scroller" data-scroller-wrap>
+          <button class="scroller__btn scroller__btn--prev" type="button" data-scroll-dir="-1" tabindex="-1" aria-hidden="true" hidden><svg class="icon icon--sm"><use href="#i-chevron"/></svg></button>
+          <div class="date-chips" data-date-chips>
+            {% with sel=form.date.value|stringformat:'s' %}
+            {% for d in date_choices %}
+            {% if d.is_today and not today_slot.available_today %}
+            <label class="date-chip is-today is-full">
+              <input type="radio" name="date" value="{{ d.value }}" disabled data-today="1" data-label="{{ d.label }}">
+              <span class="date-chip__face">
+                <span class="date-chip__wd">امروز</span>
+                <span class="date-chip__day">{% if d.day %}{{ d.day }}{% else %}{{ d.label|cut:d.weekday }}{% endif %}</span>
+                <span class="date-chip__month">{% if d.month %}{{ d.month }}{% endif %}</span>
+                <span class="date-chip__full">تکمیل<span class="sr-only">؛ برای امروز ساعت خالی نمانده است</span></span>
+              </span>
+            </label>
+            {% else %}
+            <label class="date-chip{% if d.is_today %} is-today{% endif %}">
+              <input type="radio" name="date" value="{{ d.value }}"{% if sel == d.value %} checked{% endif %} data-today="{{ d.is_today|yesno:'1,0' }}" data-label="{{ d.label }}" required>
+              <span class="date-chip__face">
+                <span class="date-chip__wd">{% if d.is_today %}امروز{% else %}{{ d.weekday }}{% endif %}</span>
+                {% if d.day %}
+                <span class="date-chip__day">{{ d.day }}</span>
+                <span class="date-chip__month">{{ d.month }}</span>
+                {% else %}
+                <span class="date-chip__day">{{ d.label|cut:d.weekday }}</span>
+                {% endif %}
+              </span>
+            </label>
+            {% endif %}
+            {% endfor %}
+            {% endwith %}
+          </div>
+          <button class="scroller__btn scroller__btn--next" type="button" data-scroll-dir="1" tabindex="-1" aria-hidden="true" hidden><svg class="icon icon--sm"><use href="#i-chevron"/></svg></button>
+        </div>
+        {% if form.date.errors %}<div class="field__errors" id="{{ form.date.auto_id }}_error">{% for e in form.date.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+      </fieldset>
+      {% endwith %}
+
+      {# 2 — Time #}
+      <fieldset class="step{% if form.time.errors %} has-error{% endif %}"{% if form.time.errors %} aria-describedby="{{ form.time.auto_id }}_error"{% endif %} data-time-step>
+        <legend class="step__legend"><span class="step__num" aria-hidden="true">۲</span>چه ساعتی؟</legend>
+        {% with sel=form.time.value|stringformat:'s'|slice:':5' %}
+        <div class="time-groups" data-time-chips>
+          <div class="time-group">
+            <p class="time-group__label"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkle"/></svg>ناهار و عصر</p>
+            <div class="time-chips">
+              {% for t in time_choices %}{% if t.value < '17:00' %}
+              <label class="time-chip"><input type="radio" name="time" value="{{ t.value }}"{% if sel == t.value %} checked{% endif %} data-today-ok="{% if t.available_today is False %}0{% else %}1{% endif %}" data-label="{{ t.label }}" required><span>{{ t.label }}</span></label>
+              {% endif %}{% endfor %}
+            </div>
+          </div>
+          <div class="time-group">
+            <p class="time-group__label"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-star"/></svg>شام</p>
+            <div class="time-chips">
+              {% for t in time_choices %}{% if t.value >= '17:00' %}
+              <label class="time-chip"><input type="radio" name="time" value="{{ t.value }}"{% if sel == t.value %} checked{% endif %} data-today-ok="{% if t.available_today is False %}0{% else %}1{% endif %}" data-label="{{ t.label }}" required><span>{{ t.label }}</span></label>
+              {% endif %}{% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endwith %}
+        <p class="field__hint" id="time-hint" data-time-hint hidden></p>
+        {% if form.time.errors %}<div class="field__errors" id="{{ form.time.auto_id }}_error">{% for e in form.time.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+      </fieldset>
+
+      {# 3 — Guests & occasion #}
+      <fieldset class="step">
+        <legend class="step__legend"><span class="step__num" aria-hidden="true">۳</span>چند نفر و به چه مناسبتی؟</legend>
+        <div class="field-row">
+          <div class="field{% if form.guests.errors %} has-error{% endif %}">
+            <label class="field__label" for="{{ form.guests.id_for_label }}">تعداد مهمان‌ها</label>
+            <div class="stepper" data-stepper>
+              <button class="stepper__btn" type="button" data-step="1" hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-plus"/></svg><span class="sr-only">یک نفر بیشتر</span></button>
+              {{ form.guests }}
+              <button class="stepper__btn" type="button" data-step="-1" hidden><svg class="icon icon--sm" aria-hidden="true"><use href="#i-minus"/></svg><span class="sr-only">یک نفر کمتر</span></button>
+              <span class="stepper__unit" aria-hidden="true">نفر</span>
+            </div>
+            <p class="field__hint" id="guests-hint" data-guests-hint hidden>برای مراسم بیش از ۲۰ نفر لطفاً تماس بگیرید{% if site.phone %}: <a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a>{% endif %}</p>
+            {% if form.guests.errors %}<div class="field__errors" id="{{ form.guests.auto_id }}_error">{% for e in form.guests.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+          </div>
+          <div class="field{% if form.occasion.errors %} has-error{% endif %}">
+            <label class="field__label" for="{{ form.occasion.id_for_label }}">مناسبت <small>(اختیاری)</small></label>
+            <div class="select">{{ form.occasion }}</div>
+            {% if form.occasion.errors %}<div class="field__errors" id="{{ form.occasion.auto_id }}_error">{% for e in form.occasion.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+          </div>
+        </div>
+      </fieldset>
+
+      {# 4 — Contact #}
+      <fieldset class="step">
+        <legend class="step__legend"><span class="step__num" aria-hidden="true">۴</span>مشخصات شما</legend>
+        <div class="field-row">
+          <div class="field{% if form.name.errors %} has-error{% endif %}">
+            <label class="field__label" for="{{ form.name.id_for_label }}">نام و نام خانوادگی</label>
+            {{ form.name }}
+            {% if form.name.errors %}<div class="field__errors" id="{{ form.name.auto_id }}_error">{% for e in form.name.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+          </div>
+          <div class="field{% if form.phone.errors %} has-error{% endif %}">
+            <label class="field__label" for="{{ form.phone.id_for_label }}">شماره‌ی تماس</label>
+            {{ form.phone }}
+            <p class="field__hint" id="{{ form.phone.auto_id }}_hint" data-phone-hint data-hint-for="{{ form.phone.auto_id }}">برای تأیید رزرو با همین شماره تماس می‌گیریم.</p>
+            {% if form.phone.errors %}<div class="field__errors" id="{{ form.phone.auto_id }}_error">{% for e in form.phone.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+          </div>
+        </div>
+        <div class="field{% if form.notes.errors %} has-error{% endif %}">
+          <label class="field__label" for="{{ form.notes.id_for_label }}">توضیحات <small>(اختیاری)</small></label>
+          {{ form.notes }}
+          <p class="field__hint" id="{{ form.notes.auto_id }}_hint" data-hint-for="{{ form.notes.auto_id }}">مثلاً صندلی کودک، میز نزدیک پنجره یا هر خواسته‌ی دیگری.</p>
+          {% if form.notes.errors %}<div class="field__errors" id="{{ form.notes.auto_id }}_error">{% for e in form.notes.errors %}<p class="field__error">{{ e }}</p>{% endfor %}</div>{% endif %}
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="{{ form.website.id_for_label }}">این فیلد را خالی بگذارید</label>
+          {{ form.website }}
+        </div>
+      </fieldset>
+
+      <div class="reserve-form__submit">
+        <div class="alert alert--error alert--compact" role="alert" data-client-alert hidden></div>
+        <p class="reserve-summary" aria-live="polite" data-reserve-summary hidden></p>
+        <button class="btn btn--primary btn--lg btn--block" type="submit" data-submit>
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg><span>ثبت درخواست رزرو</span>
+        </button>
+        <p class="reserve-form__fine">با ثبت رزرو، شماره‌ی شما فقط برای هماهنگی همین رزرو استفاده می‌شود.</p>
+      </div>
+    </form>
+    {% else %}
+    <div class="call-panel">
+      <span class="call-panel__icon" aria-hidden="true"><svg class="icon"><use href="#i-phone"/></svg></span>
+      <h2 class="call-panel__title">رزرو آنلاین موقتاً فعال نیست</h2>
+      <p>{{ disabled_message|default:"برای رزرو میز لطفاً با رستوران تماس بگیرید." }}</p>
+      {% if site.phone %}
+      <a class="btn btn--primary btn--lg" href="tel:{{ site.phone }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span dir="ltr">{{ site.phone_display|fa_digits }}</span></a>
+      {% else %}
+      <a class="btn btn--primary btn--lg" href="{% url 'contact' %}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>راه‌های تماس با ما</span></a>
+      {% endif %}
+      <p class="call-panel__hours">{{ site.opening_hours_text }}</p>
+    </div>
+    {% endif %}
+
+    <aside class="reserve-aside" aria-label="راهنمای رزرو">
+      <div class="girih girih--dark" aria-hidden="true"></div>
+      <div class="reserve-aside__inner">
+        {% if site.reservations_enabled %}
+        <h2 class="reserve-aside__title">رزرو چطور انجام می‌شود؟</h2>
+        <ol class="how" role="list">
+          <li><span class="how__num" aria-hidden="true">۱</span><div><strong>فرم را پر کنید</strong><p>روز، ساعت و تعداد مهمان‌ها را انتخاب کنید.</p></div></li>
+          <li><span class="how__num" aria-hidden="true">۲</span><div><strong>کد رزرو بگیرید</strong><p>بلافاصله یک کد شش‌حرفی به شما نمایش داده می‌شود.</p></div></li>
+          <li><span class="how__num" aria-hidden="true">۳</span><div><strong>تماس برای تأیید</strong><p>همکاران ما برای قطعی کردن رزرو با شما تماس می‌گیرند.</p></div></li>
+        </ol>
+        {% else %}
+        <h2 class="reserve-aside__title">رزرو تلفنی</h2>
+        <p class="reserve-aside__lead">{% if site.phone %}در ساعت کاری با ما تماس بگیرید تا میزتان را برای روز و ساعت دلخواه نگه داریم.{% else %}برای رزرو میز به رستوران سر بزنید یا از راه‌های ارتباطی صفحه‌ی تماس استفاده کنید.{% endif %}</p>
+        {% endif %}
+
+        <ul class="info-list info-list--roomy" role="list">
+          {% if site.phone %}<li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-phone"/></svg><span>رزرو تلفنی: <a href="tel:{{ site.phone }}" dir="ltr">{{ site.phone_display|fa_digits }}</a></span></li>{% endif %}
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-clock"/></svg><span>{{ site.opening_hours_text }}</span></li>
+          <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>{{ site.address }}</span></li>
+        </ul>
+
+        <div class="policy">
+          <p class="policy__title">پیش از رزرو بدانید</p>
+          <ul role="list">
+            {% if site.reservations_enabled %}
+            <li>رزرو آنلاین برای امروز تا ۳۰ روز آینده امکان‌پذیر است.</li>
+            <li>برای امروز، ساعت رزرو باید دست‌کم یک ساعت بعد از اکنون باشد.</li>
+            {% endif %}
+            <li>برای مراسم بیش از ۲۰ نفر لطفاً تماس بگیرید.</li>
+            <li>اگر برنامه‌تان تغییر کرد، خبرمان کنید تا میز را برای مهمان دیگری آماده کنیم.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+{% endblock %}

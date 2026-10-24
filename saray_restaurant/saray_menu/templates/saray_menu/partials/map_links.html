@@ -1,0 +1,10 @@
+{% with q="رستوران سارای باغمیشه تبریز" %}
+<div class="map-links">
+  {% if site.map_url %}
+  <a class="btn btn--primary btn--sm" href="{{ site.map_url }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>مسیریابی</span></a>
+  {% endif %}
+  <a class="map-link" href="https://neshan.org/maps/search/{{ q|urlencode:'' }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map"/></svg><span>نشان</span></a>
+  <a class="map-link" href="https://balad.ir/search?query={{ q|urlencode:'' }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map"/></svg><span>بلد</span></a>
+  <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query={{ q|urlencode:'' }}" rel="noopener" target="_blank"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-map"/></svg><span>گوگل‌مپ</span></a>
+</div>
+{% endwith %}

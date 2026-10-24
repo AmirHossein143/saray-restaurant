@@ -1,0 +1,22 @@
+{% load i18n static saray %}{# Django's search form with Persian digits and alt text; "all" for reservations is ?when=all (the bare list opens on upcoming). #}
+{% if cl.search_fields %}
+<div id="toolbar">
+<h2 id="changelist-search-form" class="visually-hidden">جستجو در {{ cl.opts.verbose_name_plural }}</h2>
+<form id="changelist-search" method="get" role="search" aria-labelledby="changelist-search-form">
+<div><!-- DIV needed for valid HTML -->
+<label for="searchbar"><img src="{% static "admin/img/search.svg" %}" alt="جستجو"></label>
+<input type="search" size="40" name="{{ search_var }}" value="{{ cl.query }}" id="searchbar" enterkeyhint="search"{% if cl.search_help_text %} aria-describedby="searchbar_helptext"{% endif %}>
+<input type="submit" value="{% translate 'Search' %}">
+{% if show_result_count %}
+    <span class="small quiet">{{ cl.result_count|fa_digits }} نتیجه (<a href="?{% if cl.opts.model_name == 'reservation' %}when=all{% if cl.is_popup or cl.add_facets %}&{% endif %}{% endif %}{% if cl.is_popup %}{{ is_popup_var }}=1{% if cl.add_facets %}&{% endif %}{% endif %}{% if cl.add_facets %}{{ is_facets_var }}{% endif %}">{% if cl.show_full_result_count %}از {{ cl.full_result_count|fa_digits }} مورد{% else %}{% translate "Show all" %}{% endif %}</a>)</span>
+{% endif %}
+{% for pair in cl.params.items %}
+    {% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}">{% endif %}
+{% endfor %}
+</div>
+{% if cl.search_help_text %}
+<br class="clear">
+<div class="help" id="searchbar_helptext">{{ cl.search_help_text }}</div>
+{% endif %}
+</form></div>
+{% endif %}

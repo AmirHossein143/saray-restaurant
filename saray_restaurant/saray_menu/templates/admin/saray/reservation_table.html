@@ -1,0 +1,36 @@
+{% load saray %}{# Dashboard list of reservations: rows = list from saray_dashboard, next = return URL #}
+<table class="sr-res-table">
+  <thead>
+    <tr>
+      <th scope="col">ساعت</th>
+      <th scope="col">نام</th>
+      <th scope="col">نفرات</th>
+      <th scope="col">تلفن</th>
+      <th scope="col">وضعیت</th>
+      {% if show_buttons %}<th scope="col"><span class="visually-hidden">تغییر سریع وضعیت</span></th>{% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}{% with r=row.obj %}
+    <tr class="sr-res-row sr-res-row--{{ r.status }}">
+      <td class="sr-num sr-res-time" data-label="ساعت">{{ r.time|time:"H:i"|fa_digits }}</td>
+      <td class="sr-res-name" data-label="نام"><a href="{% url 'admin:reservations_reservation_change' r.pk %}">{{ r.name }}</a>{% if r.occasion %} <span class="sr-muted">({{ r.get_occasion_display }})</span>{% endif %}</td>
+      <td class="sr-num sr-res-guests" data-label="نفرات">{{ r.guests|fa_digits }} نفر</td>
+      <td class="sr-res-phone" data-label="تلفن"><a href="tel:{{ r.phone }}" dir="ltr" class="sr-tel">{{ r.phone }}</a></td>
+      <td class="sr-res-status" data-label="وضعیت"><span class="sr-badge sr-badge--{{ r.status }}">{{ r.get_status_display }}</span></td>
+      {% if show_buttons and row.buttons %}
+      <td class="sr-res-actions">
+        {% for b in row.buttons %}
+          <form method="post" action="{{ row.quick_url }}" class="sr-quick">
+            {% csrf_token %}
+            <input type="hidden" name="status" value="{{ b.status }}">
+            <input type="hidden" name="next" value="{{ next }}">
+            <button type="submit" class="sr-qbtn sr-qbtn--{{ b.kind }}"{% if b.kind == 'cancel' %} data-confirm="رزرو {{ r.name }} لغو شود؟"{% endif %}>{{ b.label }}</button>
+          </form>
+        {% endfor %}
+      </td>
+      {% endif %}
+    </tr>
+    {% endwith %}{% endfor %}
+  </tbody>
+</table>

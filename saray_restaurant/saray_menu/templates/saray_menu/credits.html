@@ -1,0 +1,63 @@
+{% extends 'saray_menu/base.html' %}
+{% load static saray %}
+
+{% block title %}منابع تصاویر و فونت‌ها | {{ site.name }}{% endblock %}
+{% block meta_description %}فهرست منابع، صاحبان اثر و مجوز تصاویر و فونت‌های به‌کاررفته در وب‌سایت {{ site.name }}.{% endblock %}
+{% block og_title %}منابع تصاویر و فونت‌های {{ site.name }}{% endblock %}
+{% block og_description %}فهرست صاحبان اثر و مجوز تصاویر و فونت‌های به‌کاررفته در وب‌سایت {{ site.name }}.{% endblock %}
+{% block body_class %}page page--credits{% endblock %}
+
+{% block content %}
+<section class="page-hero page-hero--short page-hero--plain" aria-labelledby="credits-title">
+  <div class="girih girih--dark" aria-hidden="true"></div>
+  <div class="container page-hero__inner">
+    <p class="eyebrow" data-hero-in>قدردانی</p>
+    <h1 class="page-title" id="credits-title" data-hero-in>منابع <em>تصاویر و فونت‌ها</em></h1>
+    <p class="page-hero__lead" data-hero-in>بخشی از تصاویر این وب‌سایت با مجوزهای آزاد منتشر شده‌اند. از صاحبان این آثار سپاسگزاریم.</p>
+  </div>
+</section>
+
+<section class="section section--ivory credits" aria-label="فهرست منابع">
+  <div class="container container--narrow">
+    <h2 class="credits__heading">تصاویر</h2>
+    {% if credits %}
+    <div class="table-wrap" data-reveal>
+      <table class="credits-table">
+        <caption class="sr-only">منابع تصاویر</caption>
+        <thead>
+          <tr><th scope="col">تصویر</th><th scope="col">صاحب اثر</th><th scope="col">مجوز</th><th scope="col">منبع</th></tr>
+        </thead>
+        <tbody>
+          {% for c in credits %}
+          <tr>
+            <th scope="row" lang="en" dir="auto">{{ c.title|default:c.key }}</th>
+            <td dir="auto">{{ c.author|default:"—" }}</td>
+            <td>{% if c.license_url %}<a href="{{ c.license_url }}" rel="noopener license" target="_blank" dir="ltr">{{ c.license|default:"License" }}</a>{% else %}<span dir="ltr">{{ c.license|default:"—" }}</span>{% endif %}</td>
+            <td>{% if c.source_url %}<a class="credits-table__src" href="{{ c.source_url }}" rel="noopener" target="_blank">مشاهده<svg class="icon icon--xs" aria-hidden="true"><use href="#i-arrow"/></svg></a>{% else %}—{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="credits__empty">فهرست منابع تصاویر به‌زودی تکمیل می‌شود.</p>
+    {% endif %}
+
+    <h2 class="credits__heading">فونت‌ها و نشان</h2>
+    <ul class="credit-list" role="list" data-reveal>
+      <li>
+        <strong>وزیرمتن (Vazirmatn)</strong>
+        <span>اثر صابر راستی‌کردار و همکاران؛ مجوز <a href="https://openfontlicense.org" rel="noopener license" target="_blank" dir="ltr">SIL Open Font License 1.1</a> — <a href="https://github.com/rastikerdar/vazirmatn" rel="noopener" target="_blank">مخزن پروژه</a></span>
+      </li>
+      <li>
+        <strong lang="en">Marcellus</strong>
+        <span>اثر Astigmatic (Brian J. Bonislawsky)؛ مجوز <a href="https://openfontlicense.org" rel="noopener license" target="_blank" dir="ltr">SIL Open Font License 1.1</a></span>
+      </li>
+      <li>
+        <strong>نشان، آیکون‌ها و نقش‌های هندسی</strong>
+        <span>طراحی اختصاصی برای {{ site.name }}.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
